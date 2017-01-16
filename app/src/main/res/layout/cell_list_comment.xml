@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/commentCellLL"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_white"
+    android:gravity="center"
+    android:clickable="true"
+    android:layout_gravity="center"
+    android:minHeight="70dp"
+    android:orientation="vertical"
+    android:paddingTop="0dp">
+
+    <TextView
+        android:id="@+id/commentTextTV"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center|left"
+        android:paddingTop="2dp"
+        android:paddingBottom="0dp"
+        android:layout_weight="1"
+        android:text="POst dettail s here POst detail s here "
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/comment_text_size"
+        android:padding="5dp" />
+
+    <View
+        android:id="@+id/linkDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:paddingRight="5dp"
+        android:paddingLeft="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <LinearLayout
+        android:id="@+id/linkHeaderLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/linkInfoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="2dp"
+            android:text="2 links"
+            android:textColor="@color/secondary_text"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/linkArrow"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linkLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:scrollbars="vertical"
+        android:background="@color/white"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+</LinearLayout>

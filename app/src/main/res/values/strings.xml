@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Lists for Reddit</string>
+    <string name="action_info">Info</string>
+    <string name="version">1.1</string>
+    <string name="info_body">Lists for Reddit turns a Reddit post, and its first level comments, into a manageable List.\n\nJust share a Reddit Post link (from your favourite Reddit App) with this App and the Post will be converted to a List for you to manage. This allows Reddit generated resources to be captured and managed for future use.\n\nList items (comments) can be reordered, colored and deleted, on or offline.</string>
+    <string name="how_body">Share a Reddit Post with Lists for Reddit and the Post and its Comments will be added as a List.\n\nAlternatively, a Reddit Post URL can be pasted into this App (use the button on the bottom left of the Home Page).\n\nLists can be accessed offline and are manageable and modifiable.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="demo1">https://www.reddit.com/r/AskReddit/comments/5mkqww/seriousreddit_what_is_your_best_recipe/</string>
+    <string name="demo2">https://www.reddit.com/r/movies/comments/5lfnzt/rmovies_best_of_2016_best_film_of_2016/</string>
+
+    <string name="play_store_url">https://play.google.com/store/apps/details?id=com.pea.jay.redditlists</string>
+
+    <string name="toast_bad_link">There appears to be something wrong with your shared link. Please ensure it is a Reddit comments link e.g -\n\nreddit.com/r/askreddit/comments/...</string>
+    <string name="toast_no_internet">You are not connected to the internet. You must have internet access to load new lists.</string>
+
+
+    <string name="PREF_FILE_KEY">com.pea.jay.redditlists.PREFERENCE_FILE_KEY</string>
+    <string name="pref_intial_boot_main">Initial Boot Main</string>
+    <string name="pref_intial_boot_list">Initial Boot List</string>
+    <string name="pref_show_NSFW">Show NSFW</string>
+    <string name="random_colors">Random Colors</string>
+    <string name="demo_number">Demo Number</string>
+    <string name="title_activity_intent_handler">@string/app_name</string>
+
+</resources>

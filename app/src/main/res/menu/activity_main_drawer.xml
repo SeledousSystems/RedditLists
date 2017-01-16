@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_how"
+        android:background="?attr/selectableItemBackground"
+        android:title="How To Use" />
+    <item
+        android:id="@+id/nav_info"
+        android:background="?attr/selectableItemBackground"
+        android:title="Information" />
+    <item
+        android:id="@+id/nav_rate"
+        android:background="?attr/selectableItemBackground"
+        android:title="Rate on Google Play" />
+    <item
+        android:id="@+id/nav_version"
+        android:background="?attr/selectableItemBackground"
+        android:title="Version" />
+    <item
+        android:id="@+id/nav_nsfw"
+        android:title="Allow NSFW Content"
+        app:actionLayout="@layout/widget_switch" />
+    <item
+        android:id="@+id/nav_random_colors"
+        android:title="Random Colors For New Lists"
+        app:actionLayout="@layout/widget_switch" />
+    <item
+        android:id="@+id/nav_add_demo_lists"
+        android:background="?attr/selectableItemBackground"
+        android:title="Add More Demo Lists" />
+
+</menu>

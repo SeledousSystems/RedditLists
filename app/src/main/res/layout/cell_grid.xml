@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gridCellLL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/selector_statelist_grid"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/listTitleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/list_blue"
+        android:gravity="center_vertical|center"
+        android:minHeight="50dp"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:padding="5dp"
+        android:text="ListTitle"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/subredditTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:padding="3dp"
+        android:text="Subreddit"
+        android:textColor="@color/secondary_text" />
+
+    <TextView
+        android:id="@+id/dateTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="3dp"
+        android:text="Comments"
+        android:textColor="@color/secondary_text" />
+
+</LinearLayout>

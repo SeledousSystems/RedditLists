@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pea.jay.redditlists">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_INTERNET_STATE" />
+
+    <application
+        android:name=".persistance.GlobalListHolder"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:launchMode="singleTask"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".userInterface.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+
+            <!-- start the activity -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--&lt;!&ndash; gets the shared link intent &ndash;&gt;-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.SEND" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<data android:mimeType="text/plain" />-->
+            <!--</intent-filter>-->
+
+
+            <!--asudyg?-->
+
+        </activity>
+        <activity
+            android:name=".userInterface.RecyclerListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".userInterface.IntentHandlerActivity"
+            android:label="@string/title_activity_intent_handler"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- gets the shared link intent -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+
+        </activity>
+    </application>
+
+</manifest>

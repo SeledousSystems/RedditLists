@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+android {
+    signingConfigs {
+        config {
+            keyAlias 'allergycardkeystore'
+            keyPassword '3l3ph@ntAS'
+            storeFile file('C:/Users/Paul/AndroidStudioProjects/KeyStorePath/AllergyCardKeyStore.jks')
+            storePassword '3l3ph@ntAS'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.pea.jay.redditlists"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 8
+        versionName "1.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        free {
+        }
+        paid {
+        }
+    }
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile 'com.android.support:appcompat-v7:25.0.1'
+        compile 'com.android.support:design:25.0.1'
+        compile 'com.github.bmelnychuk:atv:1.2.+'
+        compile 'com.android.support:support-v4:25.0.1'
+        testCompile 'junit:junit:4.12'
+    }
+}
+dependencies {
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_settings_new"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_border"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.pea.jay.redditlists.userInterface.MainActivity">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:maxLines="1"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:text="Options"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/dialog_header_text_size" />
+
+    <TextView
+        android:id="@+id/postTitleTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:text="post title here"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/dialog_sub_header_text_size" />
+
+
+    <TextView
+        android:id="@+id/regenList"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/image_button_border"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:text="Refresh All\nPost Comments"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/removeNegCommsTV"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/image_button_border"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Remove any negative\nscored comments"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/openPostTV"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/image_button_border"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Open Post in\nReddit App"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/closeButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_margin="2dp"
+        android:background="@color/primary"
+        android:gravity="center"
+        android:text="Close" />
+
+</LinearLayout>
+
+

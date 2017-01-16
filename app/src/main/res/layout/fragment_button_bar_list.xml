@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_button_bar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    tools:context="com.pea.jay.redditlists.userInterface.GridButtonBarFragment">
+
+    <Button
+        android:id="@+id/openCommentButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:text="Open Comment\nIn Reddit"
+        android:textColor="@color/white" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent" />
+
+    <Button
+        android:id="@+id/copyTextButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:text="Copy\nText"
+        android:textColor="@color/white" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:text="Delete\nComment"
+        android:textColor="@color/white" />
+
+</LinearLayout>
