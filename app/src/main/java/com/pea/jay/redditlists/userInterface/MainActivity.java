@@ -18,6 +18,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -34,7 +35,6 @@ import android.widget.Toast;
 
 import com.pea.jay.redditlists.R;
 import com.pea.jay.redditlists.customViews.CustomRecyclerGridAdapter;
-import com.pea.jay.redditlists.customViews.SpacesItemDecoration;
 import com.pea.jay.redditlists.model.RedditList;
 import com.pea.jay.redditlists.model.RedditListFactory;
 import com.pea.jay.redditlists.persistance.GlobalListHolder;
@@ -46,7 +46,7 @@ import java.util.ArrayList;
 
 import static android.os.AsyncTask.SERIAL_EXECUTOR;
 
-public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {
 
     private RedditList touchedList;
     private ArrayList<RedditList> listAL = new ArrayList<>();
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     private SharedPrefManager spm;
     private NavigationView navigationView;
     private boolean asynchRunning = false;
+    private LinearLayout mainLL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         //set the context and object for passing to other classes to be able to call this instances public methods
         context = this;
         main = this;
-
 
         //set the action bar
         getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
@@ -150,9 +150,11 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
 
         //set up the recyler view, adapter, layout manager and spacing decorator
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
         mAdapter = new CustomRecyclerGridAdapter(listAL, new CustomRecyclerGridAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                Log.d(TAG, "onclick");
                 if (itemSelected) {
                     if (selectedView != null) selectedView.setSelected(false);
                     handleItemSelected(false);
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
 
             @Override
             public void onLongClick(View view, int position) {
+                Log.d(TAG, " logclick itemselected " + itemSelected);
                 if (!itemSelected) {
                     touchedList = listAL.get(position);
                     selectedView = view;
@@ -179,23 +182,12 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                 }
             }
         });
-
+        mAdapter.hasStableIds();
         mRecyclerView.setAdapter(mAdapter);
-        // improves performance if you know changes in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (selectedView != null) {
-                    selectedView.setSelected(false);
-                    handleItemSelected(false);
-                }
-            }
-        });
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+        //mRecyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+
         // use a grid Layout manager, assign a 2 width grid for portrait, 3 for landscape
         Configuration configuration = getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -210,7 +202,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             boolean moving = false;
 
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
                 moving = true;
+                Log.d(TAG, "onMOve");
                 selectedView = viewHolder.itemView;
                 viewHolder.itemView.setSelected(true);
                 mAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
@@ -228,11 +222,17 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                 super.clearView(recyclerView, viewHolder);
                 if (moving) {
+                    Log.d(TAG, " clearView");
                     moving = false;
                     if (selectedView != null) selectedView.setSelected(false);
                     handleItemSelected(false);
                     moving = false;
                 }
+
+//                if (selectedView != null) {
+//                    selectedView.setSelected(false);
+//                    handleItemSelected(false);
+//                }
             }
 
             @Override
@@ -311,9 +311,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         bbFrag = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
         cbFrag = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
         //final calls to ensure main activity is in its intial state
+        mainLL = (LinearLayout) findViewById(R.id.main_ll);
         handleItemSelected(false);
         updateUI();
-
     }
 
 
@@ -459,7 +459,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             }
         });
         dialog.show();
-
     }
 
     /**
@@ -468,8 +467,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      * @param selected
      */
     public void handleItemSelected(boolean selected) {
-        itemSelected = selected;
-        if (itemSelected) {
+
+        Log.d(TAG, " handle method itemselected " + itemSelected);
+        if (selected) {
             //hide the normal buttons
             buttonLL.setVisibility(View.GONE);
             //update the fragments
@@ -486,8 +486,10 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             buttonLL.setVisibility(View.VISIBLE);
             //remove the selected items
             if (selectedView != null) selectedView.setSelected(false);
-            mAdapter.notifyDataSetChanged();
+             mAdapter.notifyDataSetChanged();
         }
+        //mAdapter.notifyDataSetChanged();
+        itemSelected = selected;
     }
 
     //to be implemented in the future
@@ -509,7 +511,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     public void deleteList(final RedditList list) {
         listAL.remove(list);
         updateUI();
-        //storeArrayList();
     }
 
     /**
@@ -576,7 +577,8 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      * method to update the adapter data for the recycler list
      */
     private void updateUI() {
-        mAdapter.update(listAL);
+        mAdapter.notifyDataSetChanged();
+       // mAdapter.update(listAL);
     }
 
     @Override
@@ -608,13 +610,58 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         }
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_info:
-                DialogManager.showInfoDialog(context);
+            case R.id.action_search:
+                //show search view
+                break;
+            case R.id.action_sort:
+                showSortPopup(mainLL);
                 break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * search popup menu
+     */
+    public void showSortPopup(View v) {
+//        final ViewGroup
+//        PopupMenu popup = new PopupMenu(context);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.menu_sort, popup.getMenu());
+//        final PopupWindow popupWindow = new PopupWindow(this);
+//        popup.setOnMenuItemClickListener(this);
+//        popup.show();
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.sort_date_new:
+                //sort list here
+                break;
+            case R.id.sort_date_old:
+                //sort list here
+                break;
+            case R.id.sort_title_a_z:
+                //sort list here
+                break;
+            case R.id.sort_title_z_a:
+                //sort list here
+                break;
+            case R.id.sort_subreddit_a_z:
+                //sort list here
+                break;
+            case R.id.sort_subreddit_z_a:
+                //sort list here
+                break;
+        }
+
+        return false;
     }
 
     /**

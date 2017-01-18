@@ -13,7 +13,6 @@ public class BackgroundBuilder {
 
     public static int getColour(Context context, String string) {
         int color = ContextCompat.getColor(context, R.color.list_white);
-        Log.d("Color String" , string);
         switch(string) {
             case "red":
                 color = ContextCompat.getColor(context, R.color.list_red);
@@ -33,7 +32,6 @@ public class BackgroundBuilder {
             default:
                 break;
         }
-
         return color;
     }
 }

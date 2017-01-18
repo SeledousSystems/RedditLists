@@ -28,13 +28,9 @@ public class PostFactory {
 
     public RedditPost getPostObject(Context context, String JSONString) {
         this.context = context;
-        //progress update
-        //progressUpdate(30);
-        Log.d("Main_activity", JSON_URL);
         // assign the string to the factor parameters
         this.JSON_URL = JSONString;
 
-//        Log.d("Main_activity", JSON_URL);
         // set up the top level JSONObjects
         setUpPostFactoryParams();
         //progress update
@@ -50,7 +46,7 @@ public class PostFactory {
         return post;
     }
 
-    // Send an Intent w. The Intent sent should be received by the ReceiverActivity.
+    // Send an Intent. The Intent sent should be received by the ReceiverActivity.
     private void progressUpdate(int i) {
         Log.d("sender", "Broadcasting message  " + i);
         Intent intent = new Intent("progress-update");
@@ -60,7 +56,6 @@ public class PostFactory {
     }
 
     private void setUpPostFactoryParams() {
-        System.out.println(" XXXXXXX " + JSON_URL);
         jsonArray_Top = new JSONArray(JSON_URL);
         postObject = jsonArray_Top.getJSONObject(0);
         commentObject = jsonArray_Top.getJSONObject(1);

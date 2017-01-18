@@ -28,7 +28,6 @@ public class GridColorBarFragment extends Fragment implements View.OnClickListen
     private RelativeLayout red, blue, white, grey, yellow, green;
     private TextView whiteTV, greyTV, redTV, yellowTV, blueTV, greenTV;
     private View view;
-    private int color;
     private RedditList rl;
     private ArrayList<TextView> ticks = new ArrayList<>();
 

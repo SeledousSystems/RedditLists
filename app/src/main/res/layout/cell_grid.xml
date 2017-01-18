@@ -18,16 +18,14 @@
         android:minHeight="50dp"
         android:maxLines="4"
         android:ellipsize="end"
-        android:fontFamily="sans-serif"
         android:padding="5dp"
-        android:text="ListTitle"
         android:textColor="@color/primary_text"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/subredditTV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white"
         android:gravity="center"
@@ -48,7 +46,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="3dp"
-        android:text="Comments"
         android:textColor="@color/secondary_text" />
 
 </LinearLayout>

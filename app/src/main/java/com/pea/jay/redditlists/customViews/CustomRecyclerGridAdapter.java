@@ -80,11 +80,15 @@ public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecycl
 
         RedditList list = mDataset.get(position);
         RedditPost post = list.getPost();
+        int commentSize = post.getCommentList().size();
+        String subReddit = post.getSubreddit();
+        String title = post.getTitle();
+        String colorString = list.getColorString();
 
-        holder.title.setBackgroundColor(BackgroundBuilder.getColour(context, mDataset.get(position).getColorString()));
-        holder.title.setText(mDataset.get(position).getPost().getTitle());
-        holder.subReddit.setText("r/" + mDataset.get(position).getPost().getSubreddit());
-        holder.date.setText(post.getCommentList().size() + " Comments");
+        holder.title.setBackgroundColor(BackgroundBuilder.getColour(context, colorString));
+        holder.title.setText(title);
+        holder.subReddit.setText("r/" + subReddit);
+        holder.date.setText(commentSize + " Comments");
 
         holder.gridLL.setOnClickListener(new View.OnClickListener() {
             @Override

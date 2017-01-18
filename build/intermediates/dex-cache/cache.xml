@@ -8,187 +8,187 @@
         optimize="true"
         revision="25.0.1"
         sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\support-annotations-25.0.1_ee4658fd32478cc704d2624ac49dba2f708e6956\classes.dex" />
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\support-annotations-25.0.1_ee4658fd32478cc704d2624ac49dba2f708e6956\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\incremental-classes\free\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="67afe44af023b82c4f4d516eafa3d7bcb5daf85a">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\instant-run-bootstrap_bb35de0dc6528d6d2965017b3dc340f9e1d2deae\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_5b07dedb9085b1822b19a1e2bc2cd8eced4c5fe0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_eccc84be9056b2b7c222d118002b8067759a18db\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_af665ddc279f8594b0f1c7dc9564c9f6c364fe4b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_a185bb11704ed5a18286606632c25680bad7037a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-design-25.0.1_736091fc33b7003667119b14bb701e82f5b363ab\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-compat-25.0.1_cea69579cade489dab76e978bb5ccd677a12ac50\classes.dex" />
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-compat-25.0.1_9844e023401ca4a4a4179601c6d9af526864da0b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\incremental-classes\free\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_c9c93826b571dae58152f6af234fa6a7e2af5081\classes.dex" />
+        sha1="93acd5203e01e9796219580fbdad7744bdf1a9bf">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\instant-run-bootstrap_908cd8e06f8fea71384ddc07a87f4bbf9e77797b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_96ad4ffb4630fa869f6f3c8c31db27caa3ad6c70\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\incremental-runtime-classes\free\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6ba195ea51b5b750b6b0426ca7c5951b6d231665">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\instant-run_c9469a1c69d2f9d450a209bceda9bd3c243f0453\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-transition-25.0.1_2132aecb064ba4a095de325ca09491c7c5fee89b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_2382633daa115f93557312ea636d095017453ff0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_b1d0de898b9c9af08939cc6a3d3d838ff0cd5aae\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_85b7762c596e2a0063f4e88218b9c868bb356b87\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_2df493c343a7ce1fb8bec653dc9388d157c154b7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_cec54586f0b79fd5fecc12a4099901a8ab9ab495\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_d22ae45101dbcee8c01fe0fe0666a8738bed85ec\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.github.bmelnychuk\atv\1.2.9\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="88a61540b959acefad94af2e31989104091b624a">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.github.bmelnychuk-atv-1.2.9_38f32c76885b1b78be68bee2c25bb1bf85cfbd46\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_6767c0fc405373dabcb2b926bad3ba78d896a695\classes.dex" />
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_5937a025e91759dec60182294c0b464bea729a67\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_5d724dadf7aba6cb834b09cc252f671a6ce59b75\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_7fe86278fcdc37c1df79a404c92e9cb5bee01552\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_195e9a3376501afedc85cb330820c58dfbf8e580\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_c8ee5c67a7d6ea0c9f7b98e3c18779eb9bc84280\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\incremental-runtime-classes\free\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a7402096d403fb68b53d62537f67bd18e84cdfc6">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\instant-run_3eccf8d6e01b89746a39f2e1c82158d9f24992c4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.github.bmelnychuk\atv\1.2.9\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="88a61540b959acefad94af2e31989104091b624a">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.github.bmelnychuk-atv-1.2.9_343a1a6ff6648b0ab933f2f97f7d93b2380bc8a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-design-25.0.1_f7dc683650ab504219fd737144a082de89c81373\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_ced74d801d79dc0ce5a0318063a1a59c163d731c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-transition-25.0.1_6a561682df2cc22b758580da49de5ae2fab06c73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_d2e1c50e7601ae81012c07a22f275d23d510b5b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_9ef7700bd96e5b72495ec7fb6328e800989280a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_22b68c47db70b2ba6ed932f73d77527f978024a8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_bfb58959687109e8fc00a8e72a2e1878f103697f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\internal_impl-25.0.1_bbce52fea08f9424b1baf1a39e5916dc3f7b96c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_82c03d9a99dad917d4e9a6fd976e5bec2954cbe5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-v4-25.0.1_aa0f2152ae42777aa4eab1f7d8c3c08761696ce0\classes.dex" />
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-v4-25.0.1_967d0db4dbfce0137f5bb7bf178e581400bb7bdc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\Paul\AndroidStudioProjects\RedditLists_v1.2\app\build\intermediates\transforms\dex\free\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_c0e0cf9c982dea86401228a666c95b073f103f6a\classes.dex" />
     </item>
 
 </items>

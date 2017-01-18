@@ -1,15 +1,12 @@
 package com.pea.jay.redditlists.utilities;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.pea.jay.redditlists.R;
 
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static com.pea.jay.redditlists.utilities.DialogManager.TAG;
 
 /**
  * Created by Paul Wright on 24/12/2016.

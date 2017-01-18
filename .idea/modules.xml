@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RedditLists.iml" filepath="$PROJECT_DIR$/RedditLists.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RedditLists_v1.2.iml" filepath="$PROJECT_DIR$/RedditLists_v1.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/listance/listance.iml" filepath="$PROJECT_DIR$/listance/listance.iml" />
       <module fileurl="file://$PROJECT_DIR$/listance/listance.iml" filepath="$PROJECT_DIR$/listance/listance.iml" />
     </modules>
   </component>

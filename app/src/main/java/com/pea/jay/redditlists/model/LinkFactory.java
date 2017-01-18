@@ -20,7 +20,6 @@ public class LinkFactory {
             Matcher m = redditLinkRegexPattern.matcher(commentText);
 
             while (m.find()) {
-                System.out.println(" group count" + m.groupCount());
                 if (m.groupCount() > 1) {
                     Link link = new Link();
                     trimmedComment = trimmedComment.replace(m.group(0), "");

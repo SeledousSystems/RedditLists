@@ -10,23 +10,6 @@
     tools:context="com.pea.jay.redditlists.userInterface.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="5dp"-->
-    <!--android:id="@+id/progressBarFrame">-->
-    <!---->
-    <!--<ProgressBar-->
-    <!--style="?android:attr/progressBarStyleHorizontal"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:minHeight="5dp"-->
-    <!--android:id="@+id/progressBar"-->
-    <!--android:indeterminateTint="@android:color/holo_red_dark"-->
-    <!--android:layout_height="5dp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:indeterminate="true"/>-->
-
-    <!--</FrameLayout>-->
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"

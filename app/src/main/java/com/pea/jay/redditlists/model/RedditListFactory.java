@@ -10,7 +10,6 @@ public class RedditListFactory {
 
 
     public RedditList getListObject(Context context, RedditList redditList) {
-        Log.d("Main_activity", redditList.getJsonURL() );
         redditList.setPost(new PostFactory().getPostObject(context, RemoteData.readContents(redditList.getJsonURL())));
         redditList.getPost().setRedditList(redditList);
         return redditList;

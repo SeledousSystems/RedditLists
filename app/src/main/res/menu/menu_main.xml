@@ -3,10 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.pea.jay.redditlists.userInterface.MainActivity">
 
+
     <item
-        android:id="@+id/action_info"
+        android:id="@+id/action_search"
+        android:orderInCategory="1"
+        android:title="@string/action_info"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_sort"
         android:orderInCategory="2"
         android:title="@string/action_info"
-        android:icon="@drawable/ic_info_white_24dp"
+        android:icon="@drawable/ic_sort_white_24dp"
         app:showAsAction="always" />
+
+    <!--<item-->
+        <!--android:id="@+id/action_info"-->
+        <!--android:orderInCategory="2"-->
+        <!--android:title="@string/action_info"-->
+        <!--android:icon="@drawable/ic_info_white_24dp"-->
+        <!--app:showAsAction="always" />-->
 </menu>

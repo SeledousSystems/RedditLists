@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.pea.jay.redditlists.userInterface.MainActivity">
+
+
+       <item
+    android:id="@+id/sort_title_a_z"
+    android:orderInCategory="1"
+    android:title="Sort Title A-Z"
+    app:showAsAction="always" />
+
+    <item
+    android:id="@+id/sort_title_z_a"
+    android:orderInCategory="1"
+    android:title="Sort Title Z-A"
+    app:showAsAction="always" />
+
+    <item
+    android:id="@+id/sort_subreddit_a_z"
+    android:orderInCategory="1"
+    android:title="Sort Subreddit A-Z"
+    app:showAsAction="always" />
+
+    <item
+    android:id="@+id/sort_subreddit_z_a"
+    android:orderInCategory="1"
+    android:title="Sort Subreddit Z-A"
+    app:showAsAction="always" />
+
+    <item
+    android:id="@+id/sort_date_new"
+    android:orderInCategory="1"
+    android:title="Sort Date (newest)"
+    app:showAsAction="always" />
+
+    <item
+    android:id="@+id/sort_date_old"
+    android:orderInCategory="1"
+    android:title="Sort Date (oldest)"
+    app:showAsAction="always" />
+
+    </menu>
