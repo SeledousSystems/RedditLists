@@ -23,8 +23,10 @@
             <!-- start the activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
 
         </activity>
         <activity
@@ -38,10 +40,26 @@
             <!-- gets the shared link intent -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".userInterface.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
 
+            <!-- search the activity -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
 
         </activity>
     </application>

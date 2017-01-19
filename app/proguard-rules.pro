@@ -17,3 +17,6 @@
 #}
 
 -keep public class * implements co.uk.rushorm.core.Rush { *; }
+-keep class android.support.** { *; }
+-keep interface android.support.** { *; }
+

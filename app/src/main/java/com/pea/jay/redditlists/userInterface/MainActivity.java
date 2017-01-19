@@ -1,6 +1,7 @@
 package com.pea.jay.redditlists.userInterface;
 
 import android.app.Dialog;
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -303,6 +304,14 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
 
         }
 
+        // Get the intent, verify the action and get the query
+        Intent searchIntent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
+            String query = searchIntent.getStringExtra(SearchManager.QUERY);
+            Log.d(TAG, "searching" + query);
+        }
+
+
         //initial boot logic for showing coachOverlay and demo lists
         if (mainIntialBoot) {
             addDemoLists();
@@ -312,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         bbFrag = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
         cbFrag = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
         //final calls to ensure main activity is in its intial state
-        searchView = (SearchView) findViewById(R.id.searchView);
+        //searchView = (SearchView) findViewById(R.id.searchView);
         handleItemSelected(false);
         updateUI();
     }
@@ -350,7 +359,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             public void run() {
                 generateList(getResources().getString(R.string.demo2));
             }
-        }, 8000);
+        }, 6000);
     }
 
     private void loadExamples() {
@@ -487,7 +496,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             buttonLL.setVisibility(View.VISIBLE);
             //remove the selected items
             if (selectedView != null) selectedView.setSelected(false);
-             mAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
         }
         //mAdapter.notifyDataSetChanged();
         itemSelected = selected;
@@ -522,6 +531,26 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+//
+
+//        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                Log.d(TAG, " query text change");
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                Log.d(TAG, " query text submit");
+//                return false;
+//            }
+//        });
+
         return true;
     }
 
@@ -613,7 +642,8 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                handleSearchMode(!searchMode);
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                Log.d(TAG, " Onclick searchview");
                 break;
             case R.id.action_sort:
                 showSortPopup(findViewById(R.id.action_sort));
