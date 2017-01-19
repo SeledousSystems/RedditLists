@@ -42,10 +42,10 @@ import android.widget.Toast;
 import com.pea.jay.redditlists.R;
 import com.pea.jay.redditlists.customViews.CustomRecyclerListAdapter;
 import com.pea.jay.redditlists.model.Comment;
-import com.pea.jay.redditlists.persistance.GlobalListHolder;
 import com.pea.jay.redditlists.model.Link;
 import com.pea.jay.redditlists.model.PostFactory;
 import com.pea.jay.redditlists.model.RedditList;
+import com.pea.jay.redditlists.persistance.GlobalListHolder;
 import com.pea.jay.redditlists.utilities.StringManager;
 
 import java.io.InputStream;
@@ -97,14 +97,12 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         redditList = (RedditList) getIntent().getSerializableExtra(MainActivity.INTENT_LIST_OBJ);
 
         listsAL = GlobalListHolder.getInstance(context).getMasterList();
-        Log.d(TAG, "lists al size = " + listsAL.size());
 
         for (RedditList list : listsAL) {
             if (list.getCreated() == redditList.getCreated()) {
                 listsAL.set(listsAL.indexOf(list), redditList);
             }
         }
-        Log.d(TAG, "lists al size = " + listsAL.size());
 
         commentList = redditList.getPost().getCommentList();
 
@@ -254,12 +252,12 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             cbFrag.updateData(touchedComment);
             bbFrag.getView().setVisibility(View.VISIBLE);
             cbFrag.getView().setVisibility(View.VISIBLE);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    scrollResetMode = true;
-                }
-            }, 800);
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    scrollResetMode = true;
+//                }
+//            }, 800);
 
         } else {
             //set the background back to normal
@@ -548,6 +546,22 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         titleTV.setText(redditList.getPost().getTitle());
     }
 
+    /**
+     * Fragment Listener Method for passing data between the Activity and the button bar fragment
+     */
+    @Override
+    public void onListButtonBarFragmentInteraction(Uri uri) {
+        ListButtonBarFragment listButtonBarFragment = (ListButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_list);
+    }
+
+    /**
+     * Fragment Listener Method for passing data between the Activity and the color bar fragment
+     */
+    @Override
+    public void onListColorBarFragmentInteraction(Uri uri) {
+        ListColorBarFragment listColorBarFragment = (ListColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_list);
+    }
+
     private class RegenerateCommentsFromURL extends AsyncTask<Void, Void, ArrayList<Comment>> {
 
         protected ArrayList<Comment> doInBackground(Void... redditLists) {
@@ -573,22 +587,6 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             updateUI();
             Toast.makeText(context, "Comments Refreshed.", Toast.LENGTH_LONG).show();
         }
-    }
-
-    /**
-     * Fragment Listener Method for passing data between the Activity and the button bar fragment
-     */
-    @Override
-    public void onListButtonBarFragmentInteraction(Uri uri) {
-        ListButtonBarFragment listButtonBarFragment = (ListButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_list);
-    }
-
-    /**
-     * Fragment Listener Method for passing data between the Activity and the color bar fragment
-     */
-    @Override
-    public void onListColorBarFragmentInteraction(Uri uri) {
-        ListColorBarFragment listColorBarFragment = (ListColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_list);
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecyclerViewHolder> implements ItemTouchHelperAdapter {
+public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecyclerGridViewHolder> implements ItemTouchHelperAdapter {
     private ArrayList<RedditList> mDataset;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
@@ -54,17 +54,17 @@ public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecycl
 
     // Create new views (invoked by the layout manager)
     @Override
-    public CustomRecyclerViewHolder onCreateViewHolder(ViewGroup parent,
-                                                       int viewType) {
+    public CustomRecyclerGridViewHolder onCreateViewHolder(ViewGroup parent,
+                                                           int viewType) {
         //context
         this.context = parent.getContext();
 
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cell_grid, parent, false);
+                .inflate(R.layout.main_cell_grid, parent, false);
 
         // set the view's size, margins, paddings and layout parameters
-        CustomRecyclerViewHolder vh = new CustomRecyclerViewHolder(v);
+        CustomRecyclerGridViewHolder vh = new CustomRecyclerGridViewHolder(v);
         return vh;
     }
 
@@ -73,10 +73,9 @@ public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecycl
         notifyDataSetChanged();
     }
 
-
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(CustomRecyclerViewHolder holder, final int position) {
+    public void onBindViewHolder(CustomRecyclerGridViewHolder holder, final int position) {
 
         RedditList list = mDataset.get(position);
         RedditPost post = list.getPost();
@@ -105,18 +104,18 @@ public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecycl
         });
     }
 
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mDataset.size();
+    }
+
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 
     public interface OnItemLongClickListener {
         void onLongClick(View view, int position);
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return mDataset.size();
     }
 
 }

@@ -2,6 +2,8 @@
     <string name="app_name">Lists for Reddit</string>
     <string name="action_info">Info</string>
     <string name="version">1.1</string>
+    <string name="changelog_title">Change Log</string>
+
     <string name="info_body">Lists for Reddit turns a Reddit post, and its first level comments, into a manageable List.\n\nJust share a Reddit Post link (from your favourite Reddit App) with this App and the Post will be converted to a List for you to manage. This allows Reddit generated resources to be captured and managed for future use.\n\nList items (comments) can be reordered, colored and deleted, on or offline.</string>
     <string name="how_body">Share a Reddit Post with Lists for Reddit and the Post and its Comments will be added as a List.\n\nAlternatively, a Reddit Post URL can be pasted into this App (use the button on the bottom left of the Home Page).\n\nLists can be accessed offline and are manageable and modifiable.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

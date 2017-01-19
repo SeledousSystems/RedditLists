@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
@@ -50,11 +51,14 @@ import static android.os.AsyncTask.SERIAL_EXECUTOR;
 
 public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {
 
+    public static String INTENT_LIST_OBJ = "list_obj";
+    public static String pastedURL = "Pasted_URL_Intent";
+    GridButtonBarFragment bbFrag;
+    GridColorBarFragment cbFrag;
     private RedditList touchedList;
     private ArrayList<RedditList> listAL = new ArrayList<>();
     private Context context;
     private String rawURL = "";
-    public static String INTENT_LIST_OBJ = "list_obj";
     private String TAG = "Main_Activity";
     private RecyclerView mRecyclerView;
     private StaggeredGridLayoutManager mGridLayoutmanager;
@@ -65,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     private ItemTouchHelper ith;
     private LinearLayout buttonLL;
     private Button redditButton, linkButton;
-    public static String pastedURL = "Pasted_URL_Intent";
     private ActionBarDrawerToggle drawerToggle;
     private boolean showNSFW = false;
     private boolean randomColors = true;
@@ -74,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     private MainActivity main;
     private int genListTimeOut = 8000;
     private String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqWiOisEa46xRJoVvczCrst/kYKMOBKtO2oY38RU1v+aWK5rfNOQaSzQl+RwHkX8CFFnAmexykOvtks0he/+jj+doWmMCdKw4++mdc6lJOmaZgOWm2cZ4L2f99HDM/mYD/MHkKnfP4dBDy4BfKSgK1ujwQPrnxrFrLjfDMgkwjYGgetqN751DhGJaEiewIcY67eN0ASvhT3qxKEUhTiOcF5P6I5jRgZmsyCwwhyZb5xzVFXI6Ojq4ggVLYJlLNR0iy0KlIvwmQImdZS7s5IvyaOpKcagScGnT//cS0nnMuSEH1ySrF0q0kySfarImn8LM0GSkBSVlRAKb76fkGXKXHwIDAQAB";
-    GridButtonBarFragment bbFrag;
-    GridColorBarFragment cbFrag;
     private View selectedView;
     private SharedPrefManager spm;
     private NavigationView navigationView;
     private boolean asynchRunning = false;
     private LinearLayout mainLL;
+    private boolean searchMode = false;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,9 +190,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         mAdapter.hasStableIds();
         mRecyclerView.setAdapter(mAdapter);
 
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
-        //mRecyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-
         // use a grid Layout manager, assign a 2 width grid for portrait, 3 for landscape
         Configuration configuration = getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -204,7 +204,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             boolean moving = false;
 
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-
                 moving = true;
                 Log.d(TAG, "onMOve");
                 selectedView = viewHolder.itemView;
@@ -313,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         bbFrag = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
         cbFrag = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
         //final calls to ensure main activity is in its intial state
-        mainLL = (LinearLayout) findViewById(R.id.main_ll);
+        searchView = (SearchView) findViewById(R.id.searchView);
         handleItemSelected(false);
         updateUI();
     }
@@ -495,15 +494,14 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     }
 
     //to be implemented in the future
-//    private void handleSearchMode(boolean searchModeArg) {
-//        searchMode = searchModeArg;
-//        if(searchMode) {
-//            searchView.setVisibility(View.VISIBLE);
-//        } else {
-//            searchView.setVisibility(View.GONE);
-//        }
-//
-//    }
+    private void handleSearchMode(boolean setSearchMode) {
+        searchMode = setSearchMode;
+        if (searchMode) {
+            searchView.setVisibility(View.VISIBLE);
+        } else {
+            searchView.setVisibility(View.GONE);
+        }
+    }
 
     /**
      * delete list method
@@ -549,6 +547,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             case R.id.nav_version:
                 DialogManager.showVersionDialog(context);
                 break;
+            case R.id.nav_change_log:
+                DialogManager.showChangeLog(context, this);
+                break;
             default:
                 break;
         }
@@ -580,7 +581,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      */
     private void updateUI() {
         mAdapter.notifyDataSetChanged();
-       // mAdapter.update(listAL);
     }
 
     @Override
@@ -613,7 +613,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                //show search view
+                handleSearchMode(!searchMode);
                 break;
             case R.id.action_sort:
                 showSortPopup(findViewById(R.id.action_sort));

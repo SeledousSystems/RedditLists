@@ -6,43 +6,43 @@
 
        <item
     android:id="@+id/sort_title_a_z"
-    android:orderInCategory="3"
+           android:orderInCategory="4"
     android:title="Sort by Title (A&#x2192;Z)"
     app:showAsAction="always" />
 
     <item
     android:id="@+id/sort_title_z_a"
-    android:orderInCategory="4"
+        android:orderInCategory="5"
     android:title="Sort by Title (Z&#x2192;A)"
     app:showAsAction="always" />
 
     <item
     android:id="@+id/sort_subreddit_a_z"
-    android:orderInCategory="1"
+        android:orderInCategory="2"
     android:title="Sort by Subreddit (A&#x2192;Z)"
     app:showAsAction="always" />
 
     <item
     android:id="@+id/sort_subreddit_z_a"
-    android:orderInCategory="2"
+        android:orderInCategory="3"
     android:title="Sort by Subreddit (Z&#x2192;A)"
     app:showAsAction="always" />
 
     <item
     android:id="@+id/sort_date_new"
-    android:orderInCategory="5"
+        android:orderInCategory="6"
     android:title="Sort by Date (New&#x2192;Old)"
     app:showAsAction="always" />
 
     <item
     android:id="@+id/sort_date_old"
-    android:orderInCategory="6"
+        android:orderInCategory="7"
     android:title="Sort by Date (Old&#x2192;New)"
     app:showAsAction="always" />
 
     <item
         android:id="@+id/sort_color"
-        android:orderInCategory="6"
+        android:orderInCategory="1"
         android:title="Sort by Color" />
 
     </menu>

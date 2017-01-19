@@ -25,6 +25,8 @@ import com.pea.jay.redditlists.R;
 import com.pea.jay.redditlists.model.RedditList;
 import com.pea.jay.redditlists.userInterface.MainActivity;
 
+import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView;
+
 
 /**
  * Created by Paul on 9/11/2016.
@@ -71,7 +73,7 @@ public class DialogManager {
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Version");
-        builder.setMessage("Version : " + context.getResources().getString(R.string.version) + "\nDeveloper : PeaJay" );
+        builder.setMessage("Version : " + context.getResources().getString(R.string.version) + "\nDeveloper : PeaJay");
         builder.setNegativeButton("Close", null);
         builder.show();
     }
@@ -92,7 +94,7 @@ public class DialogManager {
             public void onClick(DialogInterface d, int arg1) {
                 if (StringManager.checkStringIsRedditComment(input.getText().toString())) {
                     String url = input.getText().toString().replace("http://", "https://");
-                    url = url.replaceAll("\\s","");
+                    url = url.replaceAll("\\s", "");
                     main.generateList(url);
                 } else {
                     main.showToast(main.getResources().getString(R.string.toast_bad_link));
@@ -159,4 +161,27 @@ public class DialogManager {
         }
     }
 
+
+    /**
+     * Chow changelog dialog
+     *
+     * @param context
+     * @param main
+     */
+    public static void showChangeLog(Context context, MainActivity main) {
+        ChangeLogRecyclerView chgList = (ChangeLogRecyclerView) main.getLayoutInflater().inflate(R.layout.changelog_recycler, null);
+
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle)
+                        .setTitle("Change Log")
+                        .setView(chgList)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        );
+        builder.show();
+    }
 }

@@ -26,16 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!--&lt;!&ndash; gets the shared link intent &ndash;&gt;-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.SEND" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<data android:mimeType="text/plain" />-->
-            <!--</intent-filter>-->
-
-
-            <!--asudyg?-->
-
         </activity>
         <activity
             android:name=".userInterface.RecyclerListActivity"
