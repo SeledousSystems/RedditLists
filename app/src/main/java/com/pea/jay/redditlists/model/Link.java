@@ -71,4 +71,6 @@ public class Link implements Serializable{
         this.redditPost = redditPost;
 
     }
+
+
 }

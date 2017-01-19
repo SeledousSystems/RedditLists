@@ -24,6 +24,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -43,6 +44,7 @@ import com.pea.jay.redditlists.utilities.DialogManager;
 import com.pea.jay.redditlists.utilities.StringManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static android.os.AsyncTask.SERIAL_EXECUTOR;
 
@@ -614,7 +616,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                 //show search view
                 break;
             case R.id.action_sort:
-                showSortPopup(mainLL);
+                showSortPopup(findViewById(R.id.action_sort));
                 break;
             default:
                 break;
@@ -626,13 +628,11 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      * search popup menu
      */
     public void showSortPopup(View v) {
-//        final ViewGroup
-//        PopupMenu popup = new PopupMenu(context);
-//        MenuInflater inflater = popup.getMenuInflater();
-//        inflater.inflate(R.menu.menu_sort, popup.getMenu());
-//        final PopupWindow popupWindow = new PopupWindow(this);
-//        popup.setOnMenuItemClickListener(this);
-//        popup.show();
+        PopupMenu popup = new PopupMenu(context, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_sort, popup.getMenu());
+        popup.setOnMenuItemClickListener(this);
+        popup.show();
     }
 
 
@@ -642,22 +642,32 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         switch (item.getItemId()) {
 
             case R.id.sort_date_new:
-                //sort list here
+                Collections.sort(listAL, new RedditList.DateForwardComparator());
+                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_date_old:
-                //sort list here
+                Collections.sort(listAL, new RedditList.DateBackwardComparator());
+                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_title_a_z:
-                //sort list here
+                Collections.sort(listAL, new RedditList.TitleForwardComparator());
+                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_title_z_a:
-                //sort list here
+                Collections.sort(listAL, new RedditList.TitleBackwardComparator());
+                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_subreddit_a_z:
-                //sort list here
+                Collections.sort(listAL, new RedditList.SubredditForwardComparator());
+                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_subreddit_z_a:
-                //sort list here
+                Collections.sort(listAL, new RedditList.SubredditBackwardComparator());
+                mAdapter.notifyDataSetChanged();
+            case R.id.sort_color:
+                Collections.sort(listAL, new RedditList.ColorComparator());
+                mAdapter.notifyDataSetChanged();
+
                 break;
         }
 
