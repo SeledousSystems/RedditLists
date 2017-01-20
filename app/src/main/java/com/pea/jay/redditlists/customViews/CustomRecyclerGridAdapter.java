@@ -29,6 +29,12 @@ public class CustomRecyclerGridAdapter extends RecyclerView.Adapter<CustomRecycl
         this.mOnItemLongClickListener = mOnItemLongClickListener;
     }
 
+    //set data set
+    public void setMDataset(ArrayList<RedditList> list) {
+        mDataset = list;
+        // notifyDataSetChanged();
+    }
+
     public ArrayList<RedditList> getmDataset() {
         return mDataset;
     }

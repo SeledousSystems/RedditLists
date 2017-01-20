@@ -665,6 +665,14 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         popup.show();
     }
 
+    public void setDataList(ArrayList<RedditList> list) {
+        mAdapter.setMDataset(list);
+    }
+
+    public void restoreDataList() {
+        mAdapter.setMDataset(listAL);
+    }
+
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
