@@ -12,12 +12,12 @@ import java.util.regex.Pattern;
  * Created by Paul Wright on 24/12/2016.
  */
 public class StringManager {
-    private static Pattern redditLinkRegexPattern = Pattern.compile("\\[(.+?)\\]\\((.+?)\\)");
     private static final Pattern urlPattern = Pattern.compile(
             "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)" + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
                     + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)",
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     public static String urlStart = "^(https?://www.|https?://|www.)";
+    private static Pattern redditLinkRegexPattern = Pattern.compile("\\[(.+?)\\]\\((.+?)\\)");
 
     public static String generateHTMLCommentText(String rawCommentString) {
         String taggedString = replaceLinksWithTags(rawCommentString);
@@ -59,12 +59,15 @@ public class StringManager {
     }
 
     public static CharSequence noTrailingwhiteLines(CharSequence text) {
-        try {
-            while (text.charAt(text.length() - 1) == '\n') {
-                text = text.subSequence(0, text.length() - 1);
+
+        if (text.length() >= 0) {
+            try {
+                while (text.charAt(text.length() - 1) == '\n') {
+                    text = text.subSequence(0, text.length() - 1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return text;
     }

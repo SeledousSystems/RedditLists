@@ -137,6 +137,7 @@ public class ListColorBarFragment extends Fragment implements View.OnClickListen
                 setTick("grey");
                 break;
             default:
+                setTick("white");
                 break;
         }
         RecyclerListActivity rla = (RecyclerListActivity) getActivity();

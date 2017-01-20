@@ -132,6 +132,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onItemClick(View view, int position) {
+                Log.d(TAG, "onclikc recycler");
                 if (itemSelected) {
                     showOptions(false);
                 } else {
@@ -152,13 +153,11 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             boolean moving = false;
 
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                if (itemSelected) {
-                    showOptions(false);
-                } else {
-                    mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
-                    moving = true;
-                    updateUI();
-                }
+
+                mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+                moving = true;
+
+
             }
 
             @Override
@@ -176,6 +175,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
                 View itemView = viewHolder.itemView;
+
                 if (dX > 0) {
                     childDrawBkgd.setBounds(itemView.getLeft(), itemView.getTop(), (int) dX, itemView.getBottom());
                     childDrawBkgd.draw(c);
@@ -183,6 +183,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
                     int yPos = (int) (((itemView.getBottom() - itemView.getTop()) / 2) + itemView.getTop() - ((textPaint.descent() + textPaint.ascent()) / 2));
                     c.drawText(text, xPos, yPos, textPaint);
                 }
+
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
 
@@ -195,6 +196,11 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                 super.clearView(recyclerView, viewHolder);
 
+                if (itemSelected) {
+                    showOptions(false);
+                }
+
+                updateUI();
             }
         };
 
@@ -244,20 +250,13 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void showOptions(boolean show) {
+        Log.d(TAG, "showoptions " + show);
         itemSelected = show;
         if (show) {
-            this.findViewById(R.id.fragment_button_bar_list).setVisibility(View.VISIBLE);
-            this.findViewById(R.id.fragment_color_bar_list).setVisibility(View.VISIBLE);
             bbFrag.updateData(touchedComment);
             cbFrag.updateData(touchedComment);
             bbFrag.getView().setVisibility(View.VISIBLE);
             cbFrag.getView().setVisibility(View.VISIBLE);
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    scrollResetMode = true;
-//                }
-//            }, 800);
 
         } else {
             //set the background back to normal
@@ -266,6 +265,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             bbFrag.getView().setVisibility(View.GONE);
             cbFrag.getView().setVisibility(View.GONE);
         }
+
     }
 
     public void deleteComment(Comment comment) {
