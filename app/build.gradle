@@ -43,6 +43,7 @@ android {
         compile 'com.android.support:support-v4:25.0.1'
         testCompile 'junit:junit:4.12'
         compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
+        compile 'me.grantland:autofittextview:0.1.+' //autoresize textview
     }
 }
 dependencies {

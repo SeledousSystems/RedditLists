@@ -13,16 +13,24 @@
     tools:context="com.pea.jay.redditlists.userInterface.SearchActivity"
     tools:showIn="@layout/activity_search">
 
-
     <LinearLayout
         android:id="@+id/recentSearchLL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="Recent Searches"
+            android:textColor="@color/secondary_text"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -33,24 +41,20 @@
 
             <TextView
                 android:id="@+id/recent1TV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="recent search"
+                android:textColor="@color/primary_text"
                 android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"></View>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -61,23 +65,20 @@
 
             <TextView
                 android:id="@+id/recent2TV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="recent search" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"></View>
+                android:paddingLeft="20dp"
+                android:text="recent search"
+                android:textColor="@color/primary_text"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -88,23 +89,20 @@
 
             <TextView
                 android:id="@+id/recent3TV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="recent search" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"></View>
+                android:paddingLeft="20dp"
+                android:text="recent search"
+                android:textColor="@color/primary_text"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -115,24 +113,21 @@
 
             <TextView
                 android:id="@+id/recent4TV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="recent search" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"></View>
+                android:paddingLeft="20dp"
+                android:text="recent search"
+                android:textColor="@color/primary_text"
+                android:textSize="20sp" />
 
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -143,27 +138,49 @@
 
             <TextView
                 android:id="@+id/recent5TV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="recent search" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"></View>
+                android:paddingLeft="20dp"
+                android:text="recent search"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/subredditRL"
+    <TextView
+        android:id="@+id/SubredditTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
+        android:layout_height="30dp"
+        android:layout_below="@+id/recentSearchLL"
+        android:gravity="center"
+        android:padding="0dp"
+        android:text="SubReddits"
+        android:textColor="@color/secondary_text"
+        android:textSize="18sp" />
+
+    <GridView
+        android:id="@+id/subredditGV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SubredditTitle"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:numColumns="3"></GridView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/subredditGV"
+        android:gravity="center"
+        android:padding="0dp"
+        android:text="Colors"
+        android:textColor="@color/secondary_text"
+        android:textSize="18sp" />
 
     <ListView
         android:id="@+id/listView"

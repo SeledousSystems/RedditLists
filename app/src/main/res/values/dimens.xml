@@ -12,4 +12,6 @@
     <dimen name="comment_text_size">18sp</dimen>
     <dimen name="spacing">2sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="search_activity_section_title">18sp</dimen>
+    <dimen name="search_activity_recent_searchs">18sp</dimen>
 </resources>

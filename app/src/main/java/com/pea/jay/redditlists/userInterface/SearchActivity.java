@@ -10,12 +10,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pea.jay.redditlists.R;
+import com.pea.jay.redditlists.customViews.CustomGridView;
+import com.pea.jay.redditlists.customViews.CustomGridViewAdaptor;
 import com.pea.jay.redditlists.customViews.CustomListViewAdaptor;
 import com.pea.jay.redditlists.model.RedditList;
 import com.pea.jay.redditlists.persistance.GlobalListHolder;
@@ -39,6 +44,9 @@ public class SearchActivity extends AppCompatActivity {
     private ArrayList<TextView> recentSearchTVs;
     private TextView recentSearch1, recentSearch2, recentSearch3, recentSearch4, recentSearch5;
     private LinearLayout recentSearchLL;
+    private GridView gridView;
+    private CustomGridView customGridView;
+    private CustomGridViewAdaptor customGridViewAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +58,9 @@ public class SearchActivity extends AppCompatActivity {
 
         context = this;
         spm = new SharedPrefManager(context);
-        subredditRL = (RelativeLayout) findViewById(R.id.subredditRL);
+        //subredditRL = (RelativeLayout) findViewById(R.id.subredditRL);
         recentSearchLL = (LinearLayout) findViewById(R.id.recentSearchLL);
+
 
         lists = new ArrayList<>();
 
@@ -63,6 +72,18 @@ public class SearchActivity extends AppCompatActivity {
         fullListAL = GlobalListHolder.getInstance(context).getMasterList();
         subRedditAL = new ArrayList<>();
         buildSubTags();
+
+        gridView = (GridView) findViewById(R.id.subredditGV);
+        customGridViewAdaptor = new CustomGridViewAdaptor(this, subRedditAL);
+
+        gridView.setAdapter(customGridViewAdaptor);
+
+        gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, subRedditAL.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         recentSearchTVs = new ArrayList<>();
         recentSearch1 = (TextView) findViewById(R.id.recent1TV);
@@ -80,11 +101,12 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void buildrecentViews() {
-
         Log.d(TAG, " Size of recent " + recentSearches.size());
+        Log.d(TAG, " Size of TVs " + recentSearchTVs.size());
         for (int i = 0; i < recentSearchTVs.size(); i++) {
             if (i < recentSearches.size()) {
                 recentSearchTVs.get(i).setText(recentSearches.get(i));
+                Log.d(TAG, i + recentSearches.get(i));
             } else
                 recentSearchTVs.get(i).setVisibility(View.GONE);
         }
@@ -95,21 +117,23 @@ public class SearchActivity extends AppCompatActivity {
         for (RedditList list : fullListAL) {
 
             String subReddit = list.getPost().getSubreddit();
-            if (!subReddit.contains(subReddit)) {
+            Log.d(TAG, subReddit + " Subreddit ");
+            if (!subRedditAL.contains(subReddit)) {
                 subRedditAL.add(subReddit);
-            }
-
-            Collections.sort(subRedditAL);
-
-            for (String sub : subRedditAL) {
-                RelativeLayout subTag = (RelativeLayout) this.getLayoutInflater().inflate(R.layout.subeddit_search_tag_layout, null, false);
-                TextView subredditTV = (TextView) subTag.findViewById(R.id.subbredditTagTV);
-                subredditTV.setText(sub);
-
-                subredditRL.addView(subTag);
+                Log.d(TAG, subReddit + " Subreddit 99999");
             }
         }
+        Collections.sort(subRedditAL);
+
+        for (String sub : subRedditAL) {
+            RelativeLayout subTag = (RelativeLayout) this.getLayoutInflater().inflate(R.layout.subreddit_search_tag_layout, null, false);
+            TextView subredditTV = (TextView) subTag.findViewById(R.id.subbredditTagTV);
+            subredditTV.setText("r/" + sub);
+
+            // subRedditGL.addView(subTag);
+        }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -183,7 +183,6 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
                     int yPos = (int) (((itemView.getBottom() - itemView.getTop()) / 2) + itemView.getTop() - ((textPaint.descent() + textPaint.ascent()) / 2));
                     c.drawText(text, xPos, yPos, textPaint);
                 }
-
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
 
