@@ -1,7 +1,6 @@
 package com.pea.jay.redditlists.userInterface;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pea.jay.redditlists.R;
 import com.pea.jay.redditlists.customViews.CustomGridView;
@@ -35,7 +33,7 @@ import java.util.Collections;
  * Use the {@link SearchViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchViewFragment extends Fragment {
+public class SearchViewFragment extends Fragment implements View.OnClickListener {
 
     private Context context;
     private CustomListViewAdaptor listViewAdaptor;
@@ -78,11 +76,19 @@ public class SearchViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * onCreate method called when the fragment is called
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         context = getActivity().getBaseContext();
 
         main = (MainActivity) getActivity();
@@ -101,20 +107,25 @@ public class SearchViewFragment extends Fragment {
         gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, subRedditAL.get(position), Toast.LENGTH_SHORT).show();
+                searchBySubreddit(subRedditAL.get(position));
             }
         });
 
         recentSearchTVs = new ArrayList<>();
         recentSearch1 = (TextView) view.findViewById(R.id.recent1TV);
+        recentSearch1.setOnClickListener(this);
         recentSearchTVs.add(recentSearch1);
         recentSearch2 = (TextView) view.findViewById(R.id.recent2TV);
         recentSearchTVs.add(recentSearch2);
+        recentSearch2.setOnClickListener(this);
         recentSearch3 = (TextView) view.findViewById(R.id.recent3TV);
+        recentSearch3.setOnClickListener(this);
         recentSearchTVs.add(recentSearch3);
         recentSearch4 = (TextView) view.findViewById(R.id.recent4TV);
+        recentSearch4.setOnClickListener(this);
         recentSearchTVs.add(recentSearch4);
         recentSearch5 = (TextView) view.findViewById(R.id.recent5TV);
+        recentSearch5.setOnClickListener(this);
         recentSearchTVs.add(recentSearch5);
         recentSearches = spm.getRecentSearches();
         buildRecentViews();
@@ -122,6 +133,9 @@ public class SearchViewFragment extends Fragment {
         return view;
     }
 
+    /**
+     * method for builfing the recent search string views
+     */
     private void buildRecentViews() {
         Log.d(TAG, " Size of recent " + recentSearches.size());
         Log.d(TAG, " Size of TVs " + recentSearchTVs.size());
@@ -134,16 +148,59 @@ public class SearchViewFragment extends Fragment {
         }
     }
 
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onSearchViewFragmentInteraction(uri);
+    /**
+     * onClick methdo to handle the colour and recent search click listeners
+     *
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case (R.id.recent1TV):
+                searchByString(recentSearch1.getText().toString());
+                break;
+            case (R.id.recent2TV):
+                searchByString(recentSearch2.getText().toString());
+                break;
+            case (R.id.recent3TV):
+                searchByString(recentSearch3.getText().toString());
+                break;
+            case (R.id.recent4TV):
+                searchByString(recentSearch4.getText().toString());
+                break;
+            case (R.id.recent5TV):
+                searchByString(recentSearch5.getText().toString());
+                break;
+            case (R.id.blue):
+                searchByColor("blue");
+                break;
+            case (R.id.red):
+                searchByColor("red");
+                break;
+            case (R.id.green):
+                searchByColor("green");
+                break;
+            case (R.id.grey):
+                searchByColor("grey");
+                break;
+            case (R.id.white):
+                searchByColor("white");
+                break;
+            case (R.id.yellow):
+                searchByColor("yellow");
+                break;
+            default:
+                break;
         }
     }
 
-
-    private void searchByColor(String colorString) {
+    /**
+     * Method to search by list color
+     *
+     * @param colorString
+     */
+    public void searchByColor(String colorString) {
         foundLists.clear();
         for (RedditList list : fullListAL) {
             if (list.getColorString().equals(colorString)) {
@@ -153,8 +210,12 @@ public class SearchViewFragment extends Fragment {
         main.setDataList(foundLists);
     }
 
-
-    private void searchByString(String string) {
+    /**
+     * Method to search list title by string
+     *
+     * @param string
+     */
+    public void searchByString(String string) {
         foundLists.clear();
         for (RedditList list : fullListAL) {
             if (list.getPost().getTitle().contains(string)) {
@@ -162,10 +223,14 @@ public class SearchViewFragment extends Fragment {
             }
         }
         main.setDataList(foundLists);
-
     }
 
-    private void searchBySubreddit(String string) {
+    /**
+     * Method to search by Subreddit
+     *
+     * @param string
+     */
+    public void searchBySubreddit(String string) {
         foundLists.clear();
         for (RedditList list : fullListAL) {
             if (list.getPost().getSubreddit().contains(string)) {
@@ -173,20 +238,11 @@ public class SearchViewFragment extends Fragment {
             }
         }
         main.setDataList(foundLists);
-
     }
 
     /**
-     * check network is connected
-     *
-     * @return
+     * method to build the tags layout
      */
-    private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null;
-    }
-
-
     private void buildSubTags() {
         for (RedditList list : fullListAL) {
             String subReddit = list.getPost().getSubreddit();
@@ -200,11 +256,14 @@ public class SearchViewFragment extends Fragment {
             RelativeLayout subTag = (RelativeLayout) this.getActivity().getLayoutInflater().inflate(R.layout.subreddit_search_tag_layout, null, false);
             TextView subredditTV = (TextView) subTag.findViewById(R.id.subbredditTagTV);
             subredditTV.setText("r/" + sub);
-
-            // subRedditGL.addView(subTag);
         }
     }
 
+    /**
+     * onAttach method for when the fragment attaches to the activity
+     *
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -216,6 +275,9 @@ public class SearchViewFragment extends Fragment {
         }
     }
 
+    /**
+     * onDetach method for when method detaches from activity
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -224,13 +286,7 @@ public class SearchViewFragment extends Fragment {
 
     /**
      * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     * fragment to allow an interaction
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

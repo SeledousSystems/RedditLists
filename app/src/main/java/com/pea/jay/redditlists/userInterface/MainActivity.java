@@ -21,7 +21,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
@@ -34,6 +33,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.pea.jay.redditlists.R;
@@ -50,12 +50,11 @@ import java.util.Collections;
 
 import static android.os.AsyncTask.SERIAL_EXECUTOR;
 
-public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, SearchViewFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {
 
     public static String INTENT_LIST_OBJ = "list_obj";
     public static String pastedURL = "Pasted_URL_Intent";
-    GridButtonBarFragment bbFrag;
-    GridColorBarFragment cbFrag;
+    SearchViewFragment svFrag;
     private RedditList touchedList;
     private ArrayList<RedditList> listAL = new ArrayList<>();
     private Context context;
@@ -85,7 +84,11 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     private LinearLayout mainLL;
     private boolean searchMode = false;
     private SearchView searchView;
-
+    private SearchViewFragment searchViewFragment;
+    private GridColorBarFragment gridColorBarFragment;
+    private GridButtonBarFragment gridButtonBarFragment;
+    private CustomRecyclerGridAdapter.OnItemLongClickListener gridOnItemLongClickListener;
+    private CustomRecyclerGridAdapter.OnItemClickListener gridOnItemClickListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         //set up the recyler view, adapter, layout manager and spacing decorator
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        mAdapter = new CustomRecyclerGridAdapter(listAL, new CustomRecyclerGridAdapter.OnItemClickListener() {
+        gridOnItemClickListener = new CustomRecyclerGridAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "onclick");
@@ -172,7 +175,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                     startActivity(listIntent);
                 }
             }
-        }, new CustomRecyclerGridAdapter.OnItemLongClickListener() {
+        };
+
+        gridOnItemLongClickListener = new CustomRecyclerGridAdapter.OnItemLongClickListener() {
 
             @Override
             public void onLongClick(View view, int position) {
@@ -187,7 +192,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                     selectedView.setSelected(false);
                 }
             }
-        });
+        };
+
+        mAdapter = new CustomRecyclerGridAdapter(listAL, gridOnItemClickListener, gridOnItemLongClickListener);
         mAdapter.hasStableIds();
         mRecyclerView.setAdapter(mAdapter);
 
@@ -318,14 +325,15 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             onCoachMark();
             spm.saveInitialBootMain(false);
         }
-        bbFrag = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
-        cbFrag = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
+        //bbFrag = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
+        //cbFrag = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
+        svFrag = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_search_view);
+        svFrag.getView().setVisibility(View.GONE);
         //final calls to ensure main activity is in its intial state
         //searchView = (SearchView) findViewById(R.id.searchView);
         handleItemSelected(false);
         updateUI();
     }
-
 
     /**
      * check network is connected
@@ -443,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      */
     @Override
     public void onGridButtonBarFragmentInteraction(Uri uri) {
-        GridButtonBarFragment gridButtonBarFragment = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar);
+        gridButtonBarFragment = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar);
     }
 
     /**
@@ -451,7 +459,12 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
      */
     @Override
     public void onGridColorBarFragmentInteraction(Uri uri) {
-        GridColorBarFragment gridColorBarFragment = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar);
+        gridColorBarFragment = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar);
+    }
+
+    @Override
+    public void onSearchViewFragmentInteraction(Uri uri) {
+        searchViewFragment = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.action_search);
     }
 
     private void onCoachMark() {
@@ -483,15 +496,15 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             //hide the normal buttons
             buttonLL.setVisibility(View.GONE);
             //update the fragments
-            bbFrag.updateData(touchedList);
-            cbFrag.updateData(touchedList);
+            gridButtonBarFragment.updateData(touchedList);
+            gridColorBarFragment.updateData(touchedList);
             //show the buttonbar and colorbar fragments
-            bbFrag.getView().setVisibility(View.VISIBLE);
-            cbFrag.getView().setVisibility(View.VISIBLE);
+            gridButtonBarFragment.getView().setVisibility(View.VISIBLE);
+            gridColorBarFragment.getView().setVisibility(View.VISIBLE);
         } else {
             //hide the buttonbar and colorbar fragments
-            bbFrag.getView().setVisibility(View.GONE);
-            cbFrag.getView().setVisibility(View.GONE);
+            gridButtonBarFragment.getView().setVisibility(View.GONE);
+            gridColorBarFragment.getView().setVisibility(View.GONE);
             //show normal buttons
             buttonLL.setVisibility(View.VISIBLE);
             //remove the selected items
@@ -532,24 +545,53 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        //SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-//
+        final MenuItem miSearch = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(miSearch);
+        searchView.setQueryHint("Searh For List");
 
-//        searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                Log.d(TAG, " query text change");
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                Log.d(TAG, " query text submit");
-//                return false;
-//            }
-//        });
+        MenuItemCompat.setOnActionExpandListener(miSearch, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                svFrag.getView().setVisibility(View.GONE);
+
+                return true;  // Return true to collapse action view
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                svFrag.getView().setVisibility(View.VISIBLE);
+                return true;
+            }
+        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(context, query, Toast.LENGTH_LONG).show();
+                miSearch.collapseActionView();
+                searchViewFragment.getView().setVisibility(View.GONE);
+                searchViewFragment.searchByString(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if (newText.equals("")) {
+                    searchViewFragment.getView().setVisibility(View.VISIBLE);
+
+                } else {
+                    searchViewFragment.searchByString(newText);
+                }
+
+
+                return false;
+            }
+        });
+
 
         return true;
     }
@@ -642,7 +684,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 Log.d(TAG, " Onclick searchview");
                 break;
             case R.id.action_sort:

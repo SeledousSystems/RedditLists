@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:orientation="horizontal"
+    android:visibility="gone"
     tools:context="com.pea.jay.redditlists.userInterface.GridButtonBarFragment">
 
     <Button
@@ -14,8 +15,8 @@
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Open Post In Reddit" />
+        android:text="Open Post In Reddit"
+        android:textColor="@color/white" />
 
     <View
         android:layout_width="1dp"
@@ -28,8 +29,8 @@
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Copy List" />
+        android:text="Copy List"
+        android:textColor="@color/white" />
 
     <View
         android:layout_width="1dp"
@@ -42,8 +43,8 @@
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:text="View List" />
+        android:text="View List"
+        android:textColor="@color/white" />
 
 
     <View
@@ -57,7 +58,7 @@
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Delete List" />
+        android:text="Delete List"
+        android:textColor="@color/white" />
 
 </LinearLayout>

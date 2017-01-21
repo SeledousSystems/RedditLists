@@ -8,10 +8,10 @@
     tools:context="com.pea.jay.redditlists.userInterface.MainActivity">
 
     <LinearLayout
+        android:id="@+id/main_ll"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:background="@color/background_grey"
-        android:id="@+id/main_ll"
         android:orientation="vertical">
 
         <include layout="@layout/content_main" />
@@ -29,6 +29,14 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             tools:layout="@layout/fragment_button_bar_grid" />
+
+        <fragment
+            android:id="@+id/fragment_search_view"
+            android:name="com.pea.jay.redditlists.userInterface.SearchViewFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/main_buttonLL"
