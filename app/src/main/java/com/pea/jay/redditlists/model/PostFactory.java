@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class PostFactory {
 
+    Comment comment;
     private RedditPost post = new RedditPost();
     private String JSON_URL = "";
     private JSONArray jsonArray_Top;
@@ -21,10 +22,23 @@ public class PostFactory {
     private String kindT1 = "t1";
     private String kindMore = "more";
     private Context context;
-    Comment comment;
     private ArrayList<Comment> commentList = new ArrayList<>();
     private ArrayList<String> commentIds = new ArrayList<>();
     private ArrayList<String> moreCommentIds = new ArrayList<>();
+
+    public static void commentIdtoObj(RedditPost post) {
+        ArrayList<String> commentIds = post.getAllCommentIds();
+
+        for (String id : commentIds) {
+            String URL = "https://www.reddit.com/r/" + post.getSubreddit() + "/comments/" + post.getId() + "/-/" + id
+                    + ".json";
+            String JSONData = RemoteData.readContents(URL);
+            JSONArray topArray = new JSONArray(JSONData);
+            JSONObject commentObject = topArray.getJSONObject(1).getJSONObject("data").getJSONArray("children")
+                    .getJSONObject(0).getJSONObject("data");
+            if (!commentObject.optString("id").equals(id)) ;
+        }
+    }
 
     public RedditPost getPostObject(Context context, String JSONString) {
         this.context = context;
@@ -86,6 +100,13 @@ public class PostFactory {
         post.setOver18(postData.optBoolean("over_18"));
         post.setScore(postData.optInt("score"));
         post.setEmbeddedLinks(LinkFactory.buildLinkArray(post.getSelfText()));
+
+        //remove post title tags
+        post.setTitle(post.getTitle().replace("[SPOILER] ", ""));
+        post.setTitle(post.getTitle().replace("[SPOILER]", ""));
+        post.setTitle(post.getTitle().replace("[SERIOUS] ", ""));
+        post.setTitle(post.getTitle().replace("[SERIOUS]", ""));
+
     }
 
     //build the commentID arrays, these can be used to view each comment individually with replies
@@ -182,20 +203,6 @@ public class PostFactory {
             }
         }
         return rebuildcommentList;
-    }
-
-    public static void commentIdtoObj(RedditPost post) {
-        ArrayList<String> commentIds = post.getAllCommentIds();
-
-        for (String id : commentIds) {
-            String URL = "https://www.reddit.com/r/" + post.getSubreddit() + "/comments/" + post.getId() + "/-/" + id
-                    + ".json";
-            String JSONData = RemoteData.readContents(URL);
-            JSONArray topArray = new JSONArray(JSONData);
-            JSONObject commentObject = topArray.getJSONObject(1).getJSONObject("data").getJSONArray("children")
-                    .getJSONObject(0).getJSONObject("data");
-            if (!commentObject.optString("id").equals(id)) ;
-        }
     }
 
     // build java comment Obj from a JSON comment Obj

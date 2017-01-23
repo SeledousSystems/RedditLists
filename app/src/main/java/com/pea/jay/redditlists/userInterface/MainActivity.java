@@ -237,11 +237,6 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                     handleItemSelected(false);
                     moving = false;
                 }
-
-//                if (selectedView != null) {
-//                    selectedView.setSelected(false);
-//                    handleItemSelected(false);
-//                }
             }
 
             @Override
@@ -255,6 +250,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
                         ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START | ItemTouchHelper.END);
             }
         };
+
         ith = new ItemTouchHelper(_ithCallback);
         ith.attachToRecyclerView(mRecyclerView);
 
@@ -296,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             if (extras.containsKey(IntentHandlerActivity.Intent_key_URL)) {
                 rawURL = intent.getStringExtra(IntentHandlerActivity.Intent_key_URL);
                 intent.removeExtra(IntentHandlerActivity.Intent_key_URL);
+                Log.d(TAG, intent.getStringExtra(IntentHandlerActivity.Intent_key_URL));
                 if (!isNetworkConnected()) {
                     Toast.makeText(context, context.getString(R.string.toast_no_internet), Toast.LENGTH_LONG).show();
                 } else if (rawURL == null) {
