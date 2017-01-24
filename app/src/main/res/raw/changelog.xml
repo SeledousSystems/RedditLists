@@ -3,8 +3,16 @@
 
     <changelogversion
         changeDate="Jan, 2017"
+        versionName="1.2">
+        <changelogtext>Sort function added.</changelogtext>
+        <changelogtext>Improved Layout.</changelogtext>
+        <changelogtext>Bug fixes.</changelogtext>
+    </changelogversion>
+
+    <changelogversion
+        changeDate="Jan, 2017"
         versionName="1.1">
-        <changelogtext>Material Dialogs added.</changelogtext>
+        <changelogtext>Material Design Dialogs added.</changelogtext>
         <changelogtext>Bug fixes.</changelogtext>
     </changelogversion>
 

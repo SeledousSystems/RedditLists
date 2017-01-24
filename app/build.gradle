@@ -14,8 +14,8 @@ android {
         applicationId "com.pea.jay.redditlists"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 8
-        versionName "1.1"
+        versionCode 9
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }

@@ -50,7 +50,7 @@ import java.util.Collections;
 
 import static android.os.AsyncTask.SERIAL_EXECUTOR;
 
-public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, SearchViewFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements GridButtonBarFragment.OnFragmentInteractionListener, GridColorBarFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener, PopupMenu.OnMenuItemClickListener {   //SearchViewFragment.OnFragmentInteractionListener,
 
     public static String INTENT_LIST_OBJ = "list_obj";
     public static String pastedURL = "Pasted_URL_Intent";
@@ -328,8 +328,8 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         }
         gridButtonBarFragment = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
         gridColorBarFragment = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
-        svFrag = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_search_view);
-        svFrag.getView().setVisibility(View.GONE);
+        //svFrag = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_search_view);
+        //svFrag.getView().setVisibility(View.GONE);
         //final calls to ensure main activity is in its intial state
         //searchView = (SearchView) findViewById(R.id.searchView);
         handleItemSelected(false);
@@ -463,10 +463,10 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         gridColorBarFragment = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar);
     }
 
-    @Override
-    public void onSearchViewFragmentInteraction(Uri uri) {
-        searchViewFragment = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.action_search);
-    }
+//    @Override
+//    public void onSearchViewFragmentInteraction(Uri uri) {
+//        searchViewFragment = (SearchViewFragment) getSupportFragmentManager().findFragmentById(R.id.action_search);
+//    }
 
     private void onCoachMark() {
         final Dialog dialog = new Dialog(this);
@@ -545,53 +545,53 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
         //SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-        final MenuItem miSearch = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(miSearch);
-        searchView.setQueryHint("Searh For List");
+        //final MenuItem miSearch = menu.findItem(R.id.action_search);
+        //SearchView searchView = (SearchView) MenuItemCompat.getActionView(miSearch);
+//        searchView.setQueryHint("Searh For List");
 
-        MenuItemCompat.setOnActionExpandListener(miSearch, new MenuItemCompat.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                svFrag.getView().setVisibility(View.GONE);
-
-                return true;  // Return true to collapse action view
-            }
-
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                svFrag.getView().setVisibility(View.VISIBLE);
-                return true;
-            }
-        });
-
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(context, query, Toast.LENGTH_LONG).show();
-                miSearch.collapseActionView();
-                searchViewFragment.getView().setVisibility(View.GONE);
-                searchViewFragment.searchByString(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                if (newText.equals("")) {
-                    searchViewFragment.getView().setVisibility(View.VISIBLE);
-
-                } else {
-                    searchViewFragment.searchByString(newText);
-                }
-
-
-                return false;
-            }
-        });
+//        MenuItemCompat.setOnActionExpandListener(miSearch, new MenuItemCompat.OnActionExpandListener() {
+//            @Override
+//            public boolean onMenuItemActionCollapse(MenuItem item) {
+//                svFrag.getView().setVisibility(View.GONE);
+//
+//                return true;  // Return true to collapse action view
+//            }
+//
+//            @Override
+//            public boolean onMenuItemActionExpand(MenuItem item) {
+//                svFrag.getView().setVisibility(View.VISIBLE);
+//                return true;
+//            }
+//        });
+//
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                Toast.makeText(context, query, Toast.LENGTH_LONG).show();
+//                miSearch.collapseActionView();
+//                searchViewFragment.getView().setVisibility(View.GONE);
+//                searchViewFragment.searchByString(query);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//
+//                if (newText.equals("")) {
+//                    searchViewFragment.getView().setVisibility(View.VISIBLE);
+//
+//                } else {
+//                    searchViewFragment.searchByString(newText);
+//                }
+//
+//
+//                return false;
+//            }
+//        });
 
 
         return true;
@@ -684,9 +684,9 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         }
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_search:
-                Log.d(TAG, " Onclick searchview");
-                break;
+//            case R.id.action_search:
+//                Log.d(TAG, " Onclick searchview");
+//                break;
             case R.id.action_sort:
                 showSortPopup(findViewById(R.id.action_sort));
                 break;
