@@ -20,7 +20,7 @@
         android:minHeight="50dp"
         android:padding="5dp"
         android:textColor="@color/primary_text"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/subredditTV"

@@ -4,16 +4,20 @@
     <changelogversion
         changeDate="Jan, 2017"
         versionName="1.2">
-        <changelogtext>Sort function added.</changelogtext>
+        <changelogtext>New Icon.</changelogtext>
+        <changelogtext>Sort function. Sort by Color, Title, Date and Subreddit.</changelogtext>
+        <changelogtext>Removal of Spoiler and Serious post title tags.</changelogtext>
+        <changelogtext>Removal of Serious Attention Comment.</changelogtext>
+        <changelogtext>Post titles and comments resized.</changelogtext>
         <changelogtext>Improved Layout.</changelogtext>
-        <changelogtext>Bug fixes.</changelogtext>
+        <changelogtext>Performance Improvements.</changelogtext>
     </changelogversion>
 
     <changelogversion
         changeDate="Jan, 2017"
         versionName="1.1">
         <changelogtext>Material Design Dialogs added.</changelogtext>
-        <changelogtext>Bug fixes.</changelogtext>
+        <changelogtext>Performance Improvements.</changelogtext>
     </changelogversion>
 
     <changelogversion

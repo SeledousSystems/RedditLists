@@ -12,7 +12,7 @@
         android:id="@+id/titleLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_light"
+        android:background="@color/primary"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -98,7 +98,6 @@
         android:id="@+id/expandedLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
         android:background="@drawable/post_content_border"
         android:orientation="vertical">
 
@@ -108,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:background="@color/primary_light"
+            android:background="@color/background_grey"
             android:gravity="center|left"
             android:padding="3dp"
             android:paddingBottom="0dp"
@@ -169,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/dialog_border"
                 android:orientation="vertical"
-                android:padding="2dp"
+                android:padding="1dp"
                 android:scrollbars="vertical">
 
             </LinearLayout>
@@ -180,9 +179,9 @@
             android:id="@+id/buttonLL"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:background="@drawable/dialog_border"
             android:orientation="horizontal">
 

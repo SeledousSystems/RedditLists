@@ -527,7 +527,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         linkHeaderLL = (LinearLayout) findViewById(R.id.linkHeaderLL);
         if (redditList.getPost().getSelfText().equals("")) {
             commentTextTV.setGravity(Gravity.CENTER);
-            commentTextTV.setText("~ No Post Comments or Links ~");
+            commentTextTV.setText("~ No Post Text or Links ~");
             linkHeaderLL.setVisibility(View.GONE);
         }
         postLinkLL = (LinearLayout) findViewById(R.id.postLinkLL);

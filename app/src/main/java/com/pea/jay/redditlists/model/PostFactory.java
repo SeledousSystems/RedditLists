@@ -106,6 +106,10 @@ public class PostFactory {
         post.setTitle(post.getTitle().replace("[SPOILER]", ""));
         post.setTitle(post.getTitle().replace("[SERIOUS] ", ""));
         post.setTitle(post.getTitle().replace("[SERIOUS]", ""));
+        post.setTitle(post.getTitle().replace("[Spoiler] ", ""));
+        post.setTitle(post.getTitle().replace("[Spoiler]", ""));
+        post.setTitle(post.getTitle().replace("[Serious] ", ""));
+        post.setTitle(post.getTitle().replace("[Serious]", ""));
 
     }
 
@@ -208,7 +212,9 @@ public class PostFactory {
     // build java comment Obj from a JSON comment Obj
     public Comment buildCommentObj(RedditPost post, JSONObject jsonObj) {
 
-        if (!jsonObj.optString("body").equals("[deleted]") && !jsonObj.optString("body").equals("[removed]")) {
+        Log.d("TAG", jsonObj.optString("body"));
+
+        if (!jsonObj.optString("body").equals("[deleted]") && !jsonObj.optString("body").equals("[removed]") && !jsonObj.optString("body").substring(0, 12).equals("**Attention!")) {
             Comment comment = new Comment();
             comment.setPost(post);
             comment.setBody(jsonObj.optString("body"));
