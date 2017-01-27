@@ -214,7 +214,13 @@ public class PostFactory {
 
         Log.d("TAG", jsonObj.optString("body"));
 
-        if (!jsonObj.optString("body").equals("[deleted]") && !jsonObj.optString("body").equals("[removed]") && !jsonObj.optString("body").substring(0, 12).equals("**Attention!")) {
+        //check for serious attention comments and dont add them
+        if (jsonObj.optString("body").length() > 12 && jsonObj.optString("body").substring(0, 12).equals("**Attention!")) {
+            return null;
+        }
+
+
+        if (!jsonObj.optString("body").equals("[deleted]") && !jsonObj.optString("body").equals("[removed]")) {
             Comment comment = new Comment();
             comment.setPost(post);
             comment.setBody(jsonObj.optString("body"));

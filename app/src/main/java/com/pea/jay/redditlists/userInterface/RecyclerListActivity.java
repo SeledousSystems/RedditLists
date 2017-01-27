@@ -198,7 +198,6 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
                 if (itemSelected) {
                     showOptions(false);
                 }
-
                 updateUI();
             }
         };
@@ -540,9 +539,13 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void updateUI() {
-        mAdapter.notifyDataSetChanged();
         infoTV.setText(commentList.size() + " comments");
         titleTV.setText(redditList.getPost().getTitle());
+        try {
+            mAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
