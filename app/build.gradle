@@ -14,7 +14,7 @@ android {
         applicationId "com.pea.jay.redditlists"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 9
+        versionCode 10
         versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
@@ -24,12 +24,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-        }
-    }
-    productFlavors {
-        free {
-        }
-        paid {
         }
     }
     dependencies {

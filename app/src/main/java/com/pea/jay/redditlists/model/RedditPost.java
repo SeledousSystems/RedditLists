@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class RedditPost implements Serializable {
 
+    private static final long serialVersionUID = 1;
     private String subreddit;
     private String title;
     private String author;
@@ -33,12 +34,15 @@ public class RedditPost implements Serializable {
     private ArrayList<String> allCommentIds = new ArrayList<>();
     private ArrayList<String> moreCommetIds = new ArrayList<>();
     private RedditList redditList;
-    private static final long serialVersionUID = 1;
     private ArrayList<Comment> commentList = new ArrayList<>();
     private ArrayList<Link> embeddedLinks = new ArrayList<>();
 
+
     public RedditPost(RedditList redditList) {
         this.redditList = redditList;
+    }
+
+    public RedditPost() {
     }
 
     public ArrayList<String> getMoreCommetIds() {
@@ -47,9 +51,6 @@ public class RedditPost implements Serializable {
 
     public void setMoreCommetIds(ArrayList<String> moreCommetIds) {
         this.moreCommetIds = moreCommetIds;
-    }
-
-    public RedditPost() {
     }
 
     public ArrayList<Link> getEmbeddedLinks() {
@@ -131,16 +132,16 @@ public class RedditPost implements Serializable {
         return subreddit;
     }
 
+    public void setSubreddit(String subreddit) {
+        this.subreddit = subreddit;
+    }
+
     public String getThumbNail() {
         return thumbNail;
     }
 
     public void setThumbNail(String thumbNail) {
         this.thumbNail = thumbNail;
-    }
-
-    public void setSubreddit(String subreddit) {
-        this.subreddit = subreddit;
     }
 
     public String getTitle() {

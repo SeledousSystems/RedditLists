@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.pea.jay.redditlists.model.RedditList;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,19 +12,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
-
 public final class InternalStorage {
 
     private static ArrayList<String> redditListIDS = new ArrayList<>();
     private static String IDs = "redditListIDS";
     private static String ArrayListKey = "RedditListKey";
     private static ArrayList<RedditList> redditLists = new ArrayList<>();
+    private static String TAG = "InternalStorage";
 
     private InternalStorage() {
+
+
     }
 
     public static boolean testObjectExists(Context context, String key) {
+        Log.d(TAG, "Testign object exists");
         boolean exists = true;
         try {
             readObject(context, key);
@@ -36,10 +37,13 @@ public final class InternalStorage {
             e.printStackTrace();
             exists = false;
         }
+
+        Log.d(TAG, "Testign object exists  = " + exists);
         return exists;
     }
 
     public static boolean setupArrayList(Context context) {
+        Log.d(TAG, "setting up array list");
         if (!testObjectExists(context, IDs)) {
             try {
                 Log.d(TAG, "creating list IDs");
@@ -57,17 +61,17 @@ public final class InternalStorage {
 
     public static boolean writeList(Context context, ArrayList<RedditList> redditListArray) {
 
-        boolean writing = false;
-
-        while(writing){
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        writing = true;
+//        boolean writing = false;
+//
+//        while(writing){
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        writing = true;
 
         try {
             //write the object to storage, overwriting the old version the string value of the millis of created date is the Key
@@ -78,7 +82,7 @@ public final class InternalStorage {
             return false;
         }
         // unblock for next thread
-        writing = false;
+        //writing = false;
         //success return true
         return true;
     }
@@ -90,6 +94,7 @@ public final class InternalStorage {
 
         try {
             redditLists = (ArrayList<RedditList>) readObject(finContext, ArrayListKey);
+            Log.d(TAG, redditLists.size() + "Size");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
@@ -117,7 +122,6 @@ public final class InternalStorage {
 
     private static boolean deleteListInternal(Context context, String key) throws IOException,
             ClassNotFoundException {
-        File dir = context.getFilesDir();
         return context.deleteFile(key);
     }
 

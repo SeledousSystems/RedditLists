@@ -17,12 +17,19 @@ public class GlobalListHolder extends Application {
     private Context context;
     private boolean alreadyStoring = false;
 
-
     private GlobalListHolder(Context context) {
         super();
         this.context = context;
-        InternalStorage.setupArrayList(context);
+        //InternalStorage.setupArrayList(context);
         masterList = InternalStorage.getAllLists(context);
+
+    }
+
+    /**
+     * don't call this constructor. Implemented for the application start only.
+     * Call get instance to ensure singleton is abided
+     */
+    public GlobalListHolder() {
     }
 
     public static GlobalListHolder getInstance(Context context) {
@@ -34,13 +41,6 @@ public class GlobalListHolder extends Application {
 
     public ArrayList<RedditList> getMasterList() {
         return masterList;
-    }
-
-    /**
-     * don't call this constructor. Implemented for the application start only.
-     * Call get instance to ensure singleton is abided
-     */
-    public GlobalListHolder() {
     }
 
     public void storeMasterList() {

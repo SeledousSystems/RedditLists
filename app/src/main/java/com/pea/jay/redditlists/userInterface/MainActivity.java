@@ -336,6 +336,12 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         updateUI();
     }
 
+    @Override
+    protected void onStop() {
+        GlobalListHolder.getInstance(context).storeMasterList();
+        super.onStop();
+    }
+
     /**
      * check network is connected
      *
