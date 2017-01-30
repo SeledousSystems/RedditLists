@@ -43,6 +43,7 @@ import com.pea.jay.redditlists.model.RedditListFactory;
 import com.pea.jay.redditlists.persistance.GlobalListHolder;
 import com.pea.jay.redditlists.persistance.SharedPrefManager;
 import com.pea.jay.redditlists.utilities.DialogManager;
+import com.pea.jay.redditlists.utilities.ListComparator;
 import com.pea.jay.redditlists.utilities.StringManager;
 
 import java.util.ArrayList;
@@ -325,6 +326,14 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
             addDemoLists();
             onCoachMark();
             spm.saveInitialBootMain(false);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    GlobalListHolder.getInstance(context).storeMasterList();
+                }
+            }, 10000);
+
         }
         gridButtonBarFragment = (GridButtonBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_button_bar_grid);
         gridColorBarFragment = (GridColorBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_color_bar_grid);
@@ -728,30 +737,30 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         switch (item.getItemId()) {
 
             case R.id.sort_date_new:
-                Collections.sort(listAL, new RedditList.DateForwardComparator());
+                Collections.sort(listAL, new ListComparator.DateForwardComparator());
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_date_old:
-                Collections.sort(listAL, new RedditList.DateBackwardComparator());
+                Collections.sort(listAL, new ListComparator.DateBackwardComparator());
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_title_a_z:
-                Collections.sort(listAL, new RedditList.TitleForwardComparator());
+                Collections.sort(listAL, new ListComparator.TitleForwardComparator());
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_title_z_a:
-                Collections.sort(listAL, new RedditList.TitleBackwardComparator());
+                Collections.sort(listAL, new ListComparator.TitleBackwardComparator());
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_subreddit_a_z:
-                Collections.sort(listAL, new RedditList.SubredditForwardComparator());
+                Collections.sort(listAL, new ListComparator.SubredditForwardComparator());
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.sort_subreddit_z_a:
-                Collections.sort(listAL, new RedditList.SubredditBackwardComparator());
+                Collections.sort(listAL, new ListComparator.SubredditBackwardComparator());
                 mAdapter.notifyDataSetChanged();
             case R.id.sort_color:
-                Collections.sort(listAL, new RedditList.ColorComparator());
+                Collections.sort(listAL, new ListComparator.ColorComparator());
                 mAdapter.notifyDataSetChanged();
 
                 break;

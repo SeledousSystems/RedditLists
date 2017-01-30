@@ -1,1 +1,1 @@
-include ':app', ':listance'
+include ':app'

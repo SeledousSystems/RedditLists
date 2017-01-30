@@ -90,6 +90,8 @@ public final class InternalStorage {
 
     public static ArrayList<RedditList> getAllLists(Context context) {
         redditLists = new ArrayList<>();
+
+        testObjectExists(context, ArrayListKey);
         final Context finContext = context;
 
         try {
