@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     private boolean showNSFW = false;
     private boolean randomColors = true;
     private boolean mainIntialBoot = true;
+    private String versionStore = "";
     private int demoNumber = 8;
     private MainActivity main;
     private int genListTimeOut = 8000;
@@ -108,6 +109,13 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         showNSFW = spm.isShowNSFW();
         randomColors = spm.isRandomColors();
         demoNumber = spm.getDemoNumber();
+        versionStore = spm.getVersionStore();
+
+        Log.d(TAG, versionStore + "   version = " + context.getString(R.string.version));
+
+        if (Double.valueOf(versionStore) < Double.valueOf(context.getString(R.string.version))) {
+            handleVersionUpdate();
+        }
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (demoNumber > 7) {
@@ -343,6 +351,15 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
         //searchView = (SearchView) findViewById(R.id.searchView);
         handleItemSelected(false);
         updateUI();
+    }
+
+    private void handleVersionUpdate() {
+        mainIntialBoot = true;
+        demoNumber = 0;
+        spm.saveDemoNumber(0);
+        spm.saveVersionStore(context.getString(R.string.version));
+        //DialogManager.showChangeLog(context, this);
+        Log.d(TAG, "handle Version update");
     }
 
     @Override

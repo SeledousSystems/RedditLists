@@ -1,7 +1,6 @@
 package com.pea.jay.redditlists.persistance;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.pea.jay.redditlists.model.RedditList;
 
@@ -21,12 +20,9 @@ public final class InternalStorage {
     private static String TAG = "InternalStorage";
 
     private InternalStorage() {
-
-
     }
 
     public static boolean testObjectExists(Context context, String key) {
-        Log.d(TAG, "Testign object exists");
         boolean exists = true;
         try {
             readObject(context, key);
@@ -37,16 +33,12 @@ public final class InternalStorage {
             e.printStackTrace();
             exists = false;
         }
-
-        Log.d(TAG, "Testign object exists  = " + exists);
         return exists;
     }
 
     public static boolean setupArrayList(Context context) {
-        Log.d(TAG, "setting up array list");
         if (!testObjectExists(context, IDs)) {
             try {
-                Log.d(TAG, "creating list IDs");
                 writeObject(context, IDs, redditListIDS);
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -96,7 +88,6 @@ public final class InternalStorage {
 
         try {
             redditLists = (ArrayList<RedditList>) readObject(finContext, ArrayListKey);
-            Log.d(TAG, redditLists.size() + "Size");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {

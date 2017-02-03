@@ -17,6 +17,7 @@ public class SharedPrefManager {
     SharedPreferences.Editor editor;
     private boolean initialBootMain = true;
     private boolean initialBootList = true;
+    private String versionStore = "1.1";
     private boolean showNSFW = false;
     private boolean randomColors = true;
     private int demoNumber = 0;
@@ -34,6 +35,7 @@ public class SharedPrefManager {
         demoNumber = sharedPref.getInt(context.getResources().getString(R.string.demo_number), 0);
         recentSearchSet = (HashSet<String>) sharedPref.getStringSet(context.getResources().getString(R.string.recent_search_set), new HashSet<String>());
         recentSearchList = new ArrayList<>(recentSearchSet);
+        versionStore = sharedPref.getString(context.getResources().getString(R.string.version_store), "1.1");
         editor.commit();
     }
 
@@ -42,6 +44,14 @@ public class SharedPrefManager {
         editor.putStringSet(context.getResources().getString(R.string.recent_search_set), recentSearchSet);
     }
 
+    public void saveVersionStore(String string) {
+        this.versionStore = string;
+        editor.putString(context.getString(R.string.version_store), string);
+    }
+
+    public String getVersionStore() {
+        return versionStore;
+    }
 
     public ArrayList<String> getRecentSearches() {
         recentSearchList.add("one");

@@ -3,7 +3,6 @@ package com.pea.jay.redditlists.model;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.pea.jay.redditlists.libs.JSONJavaMaster.JSONArray;
 import com.pea.jay.redditlists.libs.JSONJavaMaster.JSONObject;
@@ -62,7 +61,6 @@ public class PostFactory {
 
     // Send an Intent. The Intent sent should be received by the ReceiverActivity.
     private void progressUpdate(int i) {
-        Log.d("sender", "Broadcasting message  " + i);
         Intent intent = new Intent("progress-update");
         // add the update data to the intent to update the progress bar
         intent.putExtra("progress", i);
@@ -211,8 +209,6 @@ public class PostFactory {
 
     // build java comment Obj from a JSON comment Obj
     public Comment buildCommentObj(RedditPost post, JSONObject jsonObj) {
-
-        Log.d("TAG", jsonObj.optString("body"));
 
         //check for serious attention comments and dont add them
         if (jsonObj.optString("body").length() > 12 && jsonObj.optString("body").substring(0, 12).equals("**Attention!")) {
