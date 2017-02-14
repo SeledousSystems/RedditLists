@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.pea.jay.redditlists.utilities.ItemTouchHelperAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.regex.Matcher;
 
 public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecyclerListViewHolder> implements ItemTouchHelperAdapter {
     private ArrayList<Comment> mDataset;
@@ -149,7 +151,10 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
         });
 
         holder.commentTextTV.setText(StringManager.noTrailingwhiteLines(Html.fromHtml(StringManager.generateHTMLCommentText(comment.getBody()))));
+        //holder.commentTextTV.setText(StringManager.noTrailingwhiteLines(Html.fromHtml("<a href=\"https://www.youtube.com/watch?v=fuWTcmjnEGY\">Drive It Like You Stole It</a>" + "  " + "<a href=\"https://www.youtube.com/watch?v=fuWTcmjnEGY\">Drive It Like You Stole It</a>")));
         holder.commentTextTV.setMovementMethod(LinkMovementMethod.getInstance());
+
+        //Linkify.addLinks(holder.commentTextTV, Linkify.WEB_URLS);
         int linksNo = comment.getLinks().size();
         if (linksNo == 0) {
             holder.linkDivider.setVisibility(View.GONE);

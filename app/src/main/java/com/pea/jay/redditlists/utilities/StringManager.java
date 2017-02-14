@@ -1,12 +1,15 @@
 package com.pea.jay.redditlists.utilities;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.pea.jay.redditlists.R;
 
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.pea.jay.redditlists.utilities.DialogManager.TAG;
 
 /**
  * Created by Paul Wright on 24/12/2016.
@@ -21,6 +24,7 @@ public class StringManager {
 
     public static String generateHTMLCommentText(String rawCommentString) {
         String taggedString = replaceLinksWithTags(rawCommentString);
+        //String taggedString = rawCommentString;
         taggedString = taggedString.replace("Spoiler", "<font color=\"#9c27b0\">SPOILER</font>");
 
         boolean firstBold = true;
@@ -54,13 +58,14 @@ public class StringManager {
                 firstItalics_2 = true;
             }
         }
-        taggedString = removeRedditFormating(taggedString);
+        //taggedString = removeRedditFormating(taggedString);
+        //Log.d(TAG, "tagged string = " + taggedString);
         return "<p>" + taggedString + "</p>";
     }
 
     public static CharSequence noTrailingwhiteLines(CharSequence text) {
 
-        if (text.length() >= 0) {
+        if (text.length() > 0) {
             try {
                 while (text.charAt(text.length() - 1) == '\n') {
                     text = text.subSequence(0, text.length() - 1);
@@ -83,7 +88,9 @@ public class StringManager {
                     commentText = commentText.replace(m.group(0), m.group(1));
 
                 } else {
-                    commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
+                    //commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
+                    commentText = commentText.replace(m.group(0), "<a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
+                    //Log.d(TAG, "comment text = " + commentText);
                 }
             }
         } catch (Exception e) {
@@ -93,7 +100,13 @@ public class StringManager {
         Matcher m_URL = urlPattern.matcher(commentText);
 
         while (m_URL.find()) {
-            commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
+            int startPos = commentText.indexOf(m_URL.group(0));
+            Log.d(TAG, "startpos = " + startPos + " " + commentText.substring(startPos - 8, startPos));
+            if (startPos < 9 || !commentText.substring(startPos - 8, startPos).equals("<a href=")) {
+                //commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
+                commentText = commentText.replace(m_URL.group(0), "<a href=\"" + m_URL.group(0).replaceAll("\\s+","") + "\">" + m_URL.group(0) + "</a>");
+                Log.d(TAG, "comment text = " + commentText);
+            }
         }
         return commentText;
     }
