@@ -59,7 +59,7 @@ public class StringManager {
             }
         }
         //taggedString = removeRedditFormating(taggedString);
-        //Log.d(TAG, "tagged string = " + taggedString);
+        Log.d(TAG, "tagged string = " + taggedString);
         return "<p>" + taggedString + "</p>";
     }
 
@@ -90,7 +90,7 @@ public class StringManager {
                 } else {
                     //commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
                     commentText = commentText.replace(m.group(0), "<a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
-                    //Log.d(TAG, "comment text = " + commentText);
+                    Log.d(TAG, "comment text = " + commentText);
                 }
             }
         } catch (Exception e) {
