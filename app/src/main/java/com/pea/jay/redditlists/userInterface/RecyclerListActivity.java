@@ -223,7 +223,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        addLinksToPostExpanded();
+        //addLinksToPostExpanded();
         postExpanded = true;
         handleTitleMode();
         showOptions(false);

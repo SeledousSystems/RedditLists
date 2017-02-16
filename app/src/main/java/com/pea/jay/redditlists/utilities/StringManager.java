@@ -24,7 +24,6 @@ public class StringManager {
 
     public static String generateHTMLCommentText(String rawCommentString) {
         String taggedString = replaceLinksWithTags(rawCommentString);
-        //String taggedString = rawCommentString;
         taggedString = taggedString.replace("Spoiler", "<font color=\"#9c27b0\">SPOILER</font>");
 
         boolean firstBold = true;
@@ -37,6 +36,7 @@ public class StringManager {
                 firstBold = true;
             }
         }
+
         boolean firstItalics = true;
         while (taggedString.contains("*")) {
             if (firstItalics) {
@@ -47,19 +47,18 @@ public class StringManager {
                 firstItalics = true;
             }
         }
-
-        boolean firstItalics_2 = true;
-        while (taggedString.contains("_")) {
-            if (firstItalics_2) {
-                taggedString = taggedString.replaceFirst("_", "<i>");
-                firstItalics_2 = false;
-            } else {
-                taggedString = taggedString.replaceFirst("_", "</i>");
-                firstItalics_2 = true;
-            }
-        }
+//  removed due to corruptoing links
+//        boolean firstItalics_2 = true;
+//        while (taggedString.contains("_")) {
+//            if (firstItalics_2) {
+//                taggedString = taggedString.replaceFirst("_", "<i>");
+//                firstItalics_2 = false;
+//            } else {
+//                taggedString = taggedString.replaceFirst("_", "</i>");
+//                firstItalics_2 = true;
+//            }
+//        }
         //taggedString = removeRedditFormating(taggedString);
-        Log.d(TAG, "tagged string = " + taggedString);
         return "<p>" + taggedString + "</p>";
     }
 
@@ -90,7 +89,6 @@ public class StringManager {
                 } else {
                     //commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
                     commentText = commentText.replace(m.group(0), "<a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
-                    Log.d(TAG, "comment text = " + commentText);
                 }
             }
         } catch (Exception e) {
@@ -101,11 +99,10 @@ public class StringManager {
 
         while (m_URL.find()) {
             int startPos = commentText.indexOf(m_URL.group(0));
-            Log.d(TAG, "startpos = " + startPos + " " + commentText.substring(startPos - 8, startPos));
             if (startPos < 9 || !commentText.substring(startPos - 8, startPos).equals("<a href=")) {
                 //commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
-                commentText = commentText.replace(m_URL.group(0), "<a href=\"" + m_URL.group(0).replaceAll("\\s+","") + "\">" + m_URL.group(0) + "</a>");
-                Log.d(TAG, "comment text = " + commentText);
+                commentText = commentText.replace(m_URL.group(0), "<a href=\"" + m_URL.group(0).replaceAll("\\s+", "") + "\">" + m_URL.group(0) + "</a>");
+                Log.d(TAG, "comment text2 = " + commentText);
             }
         }
         return commentText;
