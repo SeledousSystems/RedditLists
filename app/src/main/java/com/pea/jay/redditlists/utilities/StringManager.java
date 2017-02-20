@@ -88,21 +88,32 @@ public class StringManager {
 
                 } else {
                     //commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
-                    commentText = commentText.replace(m.group(0), "<a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
+                    commentText = commentText.replace(m.group(0), " <a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
+                    Log.d(TAG, "comment text1 = " + commentText);
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         // Now create matcher object.
         Matcher m_URL = urlPattern.matcher(commentText);
 
         while (m_URL.find()) {
             int startPos = commentText.indexOf(m_URL.group(0));
+
+            if (startPos > 9)
+                Log.d(TAG, commentText.substring(startPos - 8, startPos) + "    <a href=");
+
             if (startPos < 9 || !commentText.substring(startPos - 8, startPos).equals("<a href=")) {
                 //commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
-                commentText = commentText.replace(m_URL.group(0), "<a href=\"" + m_URL.group(0).replaceAll("\\s+", "") + "\">" + m_URL.group(0) + "</a>");
+                String hRef_display = m_URL.group(0);
+                if (m_URL.group(0).substring(0, 1).equals(" "))
+                    hRef_display = m_URL.group(0).substring(1, hRef_display.length());
+                commentText = commentText.replace(m_URL.group(0), " <a href=\"" + m_URL.group(0).replaceAll("\\s+", "") + "\">" + hRef_display + "</a>");
                 Log.d(TAG, "comment text2 = " + commentText);
+                commentText = commentText.replace("<a href=\"www.", "<a href=\"https://");
+                commentText = commentText.replace("<a href=\"http://", "<a href=\"https://");
+                Log.d(TAG, "comment text3 = " + commentText);
             }
         }
         return commentText;
