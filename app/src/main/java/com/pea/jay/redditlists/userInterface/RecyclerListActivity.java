@@ -25,6 +25,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
@@ -116,8 +117,8 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
 
         //set up the paint for child draw
         textPaint.setColor(Color.WHITE);
-        textPaint.setStrokeWidth(18);
-        final float textSize = 60f;
+        textPaint.setStrokeWidth(16);
+        final float textSize = 50f;
         textPaint.setTextSize(textSize);
         childDrawBkgd = ContextCompat.getDrawable(context, R.drawable.swipe_right_child);
 
@@ -132,7 +133,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onItemClick(View view, int position) {
-                Log.d(TAG, "onclikc recycler");
+
                 if (itemSelected) {
                     showOptions(false);
                 } else {
@@ -153,11 +154,9 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
             boolean moving = false;
 
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
                 mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+                mAdapter.notifyDataSetChanged();
                 moving = true;
-
-
             }
 
             @Override
@@ -224,7 +223,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        addLinksToPostExpanded();
+        //addLinksToPostExpanded();
         postExpanded = true;
         handleTitleMode();
         showOptions(false);
@@ -268,6 +267,7 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
 
     public void deleteComment(Comment comment) {
         commentList.remove(comment);
+        mAdapter.notifyItemRemoved(commentList.indexOf(comment));
         updateUI();
     }
 
@@ -522,7 +522,9 @@ public class RecyclerListActivity extends AppCompatActivity implements View.OnCl
         openPostButton.setOnClickListener(this);
         commentTextTV = (TextView) findViewById(R.id.commentTextTV);
         commentTextTV.setMovementMethod(new ScrollingMovementMethod());
+       // commentTextTV.setText(StringManager.noTrailingwhiteLines(Html.fromHtml(StringManager.generateHTMLCommentText(redditList.getPost().getSelfText()))));
         commentTextTV.setText(StringManager.noTrailingwhiteLines(Html.fromHtml(StringManager.generateHTMLCommentText(redditList.getPost().getSelfText()))));
+        commentTextTV.setMovementMethod(LinkMovementMethod.getInstance());
         linkHeaderLL = (LinearLayout) findViewById(R.id.linkHeaderLL);
         if (redditList.getPost().getSelfText().equals("")) {
             commentTextTV.setGravity(Gravity.CENTER);

@@ -1,12 +1,15 @@
 package com.pea.jay.redditlists.utilities;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.pea.jay.redditlists.R;
 
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.pea.jay.redditlists.utilities.DialogManager.TAG;
 
 /**
  * Created by Paul Wright on 24/12/2016.
@@ -33,6 +36,7 @@ public class StringManager {
                 firstBold = true;
             }
         }
+
         boolean firstItalics = true;
         while (taggedString.contains("*")) {
             if (firstItalics) {
@@ -43,24 +47,24 @@ public class StringManager {
                 firstItalics = true;
             }
         }
-
-        boolean firstItalics_2 = true;
-        while (taggedString.contains("_")) {
-            if (firstItalics_2) {
-                taggedString = taggedString.replaceFirst("_", "<i>");
-                firstItalics_2 = false;
-            } else {
-                taggedString = taggedString.replaceFirst("_", "</i>");
-                firstItalics_2 = true;
-            }
-        }
-        taggedString = removeRedditFormating(taggedString);
+//  removed due to corruptoing links
+//        boolean firstItalics_2 = true;
+//        while (taggedString.contains("_")) {
+//            if (firstItalics_2) {
+//                taggedString = taggedString.replaceFirst("_", "<i>");
+//                firstItalics_2 = false;
+//            } else {
+//                taggedString = taggedString.replaceFirst("_", "</i>");
+//                firstItalics_2 = true;
+//            }
+//        }
+        //taggedString = removeRedditFormating(taggedString);
         return "<p>" + taggedString + "</p>";
     }
 
     public static CharSequence noTrailingwhiteLines(CharSequence text) {
 
-        if (text.length() >= 0) {
+        if (text.length() > 0) {
             try {
                 while (text.charAt(text.length() - 1) == '\n') {
                     text = text.subSequence(0, text.length() - 1);
@@ -83,17 +87,34 @@ public class StringManager {
                     commentText = commentText.replace(m.group(0), m.group(1));
 
                 } else {
-                    commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
+                    //commentText = commentText.replace(m.group(0), "<font color=\"#2196F3\">" + m.group(1) + "</font>");
+                    commentText = commentText.replace(m.group(0), " <a href=\"" + m.group(2) + "\">" + m.group(1) + "</a>");
+                    Log.d(TAG, "comment text1 = " + commentText);
                 }
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         // Now create matcher object.
         Matcher m_URL = urlPattern.matcher(commentText);
 
         while (m_URL.find()) {
-            commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
+            int startPos = commentText.indexOf(m_URL.group(0));
+
+            if (startPos > 9)
+                Log.d(TAG, commentText.substring(startPos - 8, startPos) + "    <a href=");
+
+            if (startPos < 9 || !commentText.substring(startPos - 8, startPos).equals("<a href=")) {
+                //commentText = commentText.replace(m_URL.group(0), "<font color=\"#2196F3\" href=\"" + m_URL.group(0) + "\">" + m_URL.group(0) + "</font>");
+                String hRef_display = m_URL.group(0);
+                if (m_URL.group(0).substring(0, 1).equals(" "))
+                    hRef_display = m_URL.group(0).substring(1, hRef_display.length());
+                commentText = commentText.replace(m_URL.group(0), " <a href=\"" + m_URL.group(0).replaceAll("\\s+", "") + "\">" + hRef_display + "</a>");
+                Log.d(TAG, "comment text2 = " + commentText);
+                commentText = commentText.replace("<a href=\"www.", "<a href=\"https://");
+                commentText = commentText.replace("<a href=\"http://", "<a href=\"https://");
+                Log.d(TAG, "comment text3 = " + commentText);
+            }
         }
         return commentText;
     }

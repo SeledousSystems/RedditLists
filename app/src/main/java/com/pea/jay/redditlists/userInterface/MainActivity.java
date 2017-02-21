@@ -354,12 +354,12 @@ public class MainActivity extends AppCompatActivity implements GridButtonBarFrag
     }
 
     private void handleVersionUpdate() {
-        mainIntialBoot = true;
-        demoNumber = 0;
-        spm.saveDemoNumber(0);
+        //mainIntialBoot = true;
+        //demoNumber = 0;
+        //spm.saveDemoNumber(0);
         spm.saveVersionStore(context.getString(R.string.version));
-        //DialogManager.showChangeLog(context, this);
-        Log.d(TAG, "handle Version update");
+        DialogManager.showChangeLog(context, this);
+        //Log.d(TAG, "handle Version update");
     }
 
     @Override

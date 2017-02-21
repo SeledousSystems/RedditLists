@@ -20,7 +20,7 @@
         android:layout_margin="5dp"
         android:layout_weight="1"
         android:gravity="center|left"
-        android:padding="5dp"
+        android:padding="3dp"
         android:paddingBottom="0dp"
         android:paddingTop="2dp"
         android:text="POst dettail s here POst detail s here "

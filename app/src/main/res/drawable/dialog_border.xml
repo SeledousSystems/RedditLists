@@ -10,7 +10,7 @@
     <!-- upper rectangle (background color) -->
     <item
         android:bottom="2dp"
-        android:top="2dp"
+        android:top="1dp"
         android:left="2dp"
         android:right="2dp"
         >
