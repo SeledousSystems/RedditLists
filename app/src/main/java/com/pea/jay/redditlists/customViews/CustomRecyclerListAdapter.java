@@ -6,13 +6,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.pea.jay.redditlists.R;
 import com.pea.jay.redditlists.model.Comment;
+import com.pea.jay.redditlists.model.Link;
 import com.pea.jay.redditlists.utilities.ItemTouchHelperAdapter;
 import com.pea.jay.redditlists.utilities.StringManager;
 
@@ -25,6 +28,7 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
     private OnItemLongClickListener mOnItemLongClickListener;
     private Context context;
     private LinearLayout commentCellLL;
+    private String TAG = "CustRecListAdapt";
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -129,6 +133,9 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
         final LinearLayout linkLL = holder.linkLL;
         linkLL.setVisibility(View.GONE);
 
+        if (linkLL.getChildCount() > 0) {
+            linkLL.removeAllViews();
+        }
         holder.commentTextTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,14 +154,14 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
         //holder.commentTextTV.setText(StringManager.noTrailingwhiteLines(Html.fromHtml("<a href=\"https://www.youtube.com/watch?v=fuWTcmjnEGY\">Drive It Like You Stole It</a>" + "  " + "<a href=\"https://www.youtube.com/watch?v=fuWTcmjnEGY\">Drive It Like You Stole It</a>")));
         holder.commentTextTV.setMovementMethod(LinkMovementMethod.getInstance());
 
-        //Linkify.addLinks(holder.commentTextTV, Linkify.WEB_URLS);
         int linksNo = comment.getLinks().size();
-//        if (linksNo == 0) {
-        holder.linkDivider.setVisibility(View.GONE);
-        holder.linkHeaderLL.setVisibility(View.GONE);
-        holder.linkLL.setVisibility(View.GONE);
+        int spoilerCount = 0;
+        Log.d(TAG, " Link count = " + linksNo);
+        if (linksNo == 0) {
+            holder.linkDivider.setVisibility(View.GONE);
+            holder.linkHeaderLL.setVisibility(View.GONE);
+            holder.linkLL.setVisibility(View.GONE);
 //        } else {
-//            holder.linkHeaderLL.setVisibility(View.VISIBLE);
 //            holder.linkHeaderLL.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -177,17 +184,70 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
 //                if (linkURL.contains("spoiler")) {
 //                    holder.linkInfoTV.setText("One Spoiler");
 //                }
-//            } else {
-//                holder.linkInfoTV.setText(comment.getLinks().size() + " links");
-//
-//                for (Link link : comment.getLinks()) {
-//                    if (link.getLinkURL().contains("spoiler")) {
-//                        holder.linkInfoTV.setText(comment.getLinks().size() + " Links & Spoilers");
-//                    }
-//                }
-//            }
-//
-//            LinearLayout gridLL = holder.linkLL;
+        } else {
+            //holder.linkInfoTV.setText(comment.getLinks().size() + " links");
+            final LayoutInflater inflater = LayoutInflater.from(context);
+            View linkView = inflater.inflate(R.layout.cell_link, null, false);
+            final TextView linkTextTV = (TextView) linkView.findViewById(R.id.linkTextTV);
+            linkLL.setVisibility(View.GONE);
+            holder.linkHeaderLL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (linkLL.getVisibility() == View.GONE) {
+                        linkLL.setVisibility(View.VISIBLE);
+                        holder.linkArrow.setImageDrawable(upArrow);
+                    } else {
+                        linkLL.setVisibility(View.GONE);
+                        holder.linkArrow.setImageDrawable(downArrow);
+                    }
+                }
+            });
+
+            for (Link link : comment.getLinks()) {
+                if (link.getLinkURL().contains("spoiler")) {
+                    spoilerCount++;
+                    linkTextTV.setText("SPOILER - tap to reveal");
+                    linkTextTV.setTextColor(ContextCompat.getColor(context, R.color.spoiler));
+                    final TextView linkURLTV = (TextView) linkView.findViewById(R.id.linkURLTV);
+
+                    linkURLTV.setText(link.getLinkText());
+                    linkURLTV.setTextColor(ContextCompat.getColor(context, R.color.primary_light));
+                    linkURLTV.setVisibility(View.INVISIBLE);
+                    linkURLTV.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
+                    //change view
+                    linkView.setOnClickListener(new View.OnClickListener() {
+                        boolean spoilerShown = false;
+
+                        @Override
+                        public void onClick(View view) {
+                            if (!spoilerShown) {
+                                spoilerShown = true;
+                                linkURLTV.setVisibility(View.VISIBLE);
+                            } else {
+                                spoilerShown = false;
+                                linkURLTV.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    });
+                }
+            }
+            if (spoilerCount > 0) {
+                holder.linkInfoTV.setText("One Spoiler");
+                holder.linkDivider.setVisibility(View.VISIBLE);
+                holder.linkHeaderLL.setVisibility(View.VISIBLE);
+
+            }
+            if (spoilerCount > 1) {
+                holder.linkInfoTV.setText(spoilerCount + " Spoilers");
+            } else if (spoilerCount < 1) {
+                holder.linkDivider.setVisibility(View.GONE);
+                holder.linkHeaderLL.setVisibility(View.GONE);
+                holder.linkLL.setVisibility(View.GONE);
+            }
+
+            Log.d(TAG, " spoiler count = " + spoilerCount);
+
+            LinearLayout gridLL = holder.linkLL;
 //            gridLL.removeAllViews();
 //            final LayoutInflater inflater = LayoutInflater.from(context);
 //
@@ -247,10 +307,9 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
 //                        }
 //                    });
 //                }
-//                //add the view to the LL view holder
-//                gridLL.addView(linkView);
-//            }
-        //      }
+            //add the view to the LL view holder
+            gridLL.addView(linkView);
+        }
     }
 
     public interface OnItemClickListener {
@@ -259,6 +318,7 @@ public class CustomRecyclerListAdapter extends RecyclerView.Adapter<CustomRecycl
 
     public interface OnItemLongClickListener {
         void onLongClick(View view, int position);
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

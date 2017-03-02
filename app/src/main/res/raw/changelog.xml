@@ -8,6 +8,7 @@
         <changelogtext>Links clickable inside list items. Link drop downs removed.</changelogtext>
         <changelogtext>Fling to delete sensitivity adjusted to remove incorrect deletion.</changelogtext>
         <changelogtext>Improved Font sizing.</changelogtext>
+        <changelogtext>Re-enabled spoiler dropdown boxes</changelogtext>
     </changelogversion>
 
     <changelogversion
