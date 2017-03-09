@@ -21,8 +21,11 @@ public class StringManager {
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     public static String urlStart = "^(https?://www.|https?://|www.)";
     private static Pattern redditLinkRegexPattern = Pattern.compile("\\[(.+?)\\]\\((.+?)\\)");
+    private static Pattern redditLinkRegexPattern_withOptSpace = Pattern.compile("\\[(.+?)\\](\\s+)\\((.+?)\\)");
+    private static Pattern redditLinkRegexPattern_RC = Pattern.compile("\\](\\\\s*)<br> (\\\\s*)\\(");
 
     public static String generateHTMLCommentText(String rawCommentString) {
+        Log.d(TAG, " Raw  = " + rawCommentString);
         String taggedString = replaceLinksWithTags(rawCommentString);
         taggedString = taggedString.replace("Spoiler", "<font color=\"#9c27b0\">SPOILER</font>");
 
@@ -47,7 +50,19 @@ public class StringManager {
                 firstItalics = true;
             }
         }
-//  removed due to corruptoing links
+
+        boolean firstStrike = true;
+        while (taggedString.contains("~~")) {
+            if (firstStrike) {
+                taggedString = taggedString.replaceFirst("~~", "<strike>");
+                firstStrike = false;
+            } else {
+                taggedString = taggedString.replaceFirst("~~", "</strike>");
+                firstStrike = true;
+            }
+        }
+
+//  removed due to corrupting links
 //        boolean firstItalics_2 = true;
 //        while (taggedString.contains("_")) {
 //            if (firstItalics_2) {
@@ -78,11 +93,38 @@ public class StringManager {
 
     public static String replaceLinksWithTags(String commentText) {
         try {
+            Log.d(TAG, "comment textA = " + commentText);
+            //commentText = commentText.replace("]\\r?\\n(", "](");
+            while (commentText.contains("](\\s*)\\r?\\n(\\s*)(")) {
+                commentText = commentText.replace("](\\s*)\r(\\s*)", "]");
+                Log.d(TAG, "comment newline = " + commentText);
+            }
             commentText = commentText.replaceAll("\n", "<br> ");
+            Log.d(TAG, "comment textA2 = " + commentText);
+
+            //test to see if space between the [] and ()
+            Matcher m_2 = redditLinkRegexPattern_RC.matcher(commentText);
+            while (m_2.find()) {
+                String removeRC = m_2.group(0).replace("](\\s*)<br> (\\s*)(", "](");
+                Log.d(TAG, "removeRC = " + removeRC);
+                commentText = commentText.replace(m_2.group(0), removeRC);
+                Log.d(TAG, "comment textA = " + commentText);
+            }
+
+            //test to see if space between the [] and ()
+            Matcher m_1 = redditLinkRegexPattern_withOptSpace.matcher(commentText);
+            while (m_1.find()) {
+                String removeSpace = m_1.group(0).replace("] (", "](");
+                Log.d(TAG, "removeSpace = " + removeSpace);
+                commentText = commentText.replace(m_1.group(0), removeSpace);
+                Log.d(TAG, "comment textA = " + commentText);
+            }
+
             Matcher m = redditLinkRegexPattern.matcher(commentText);
             while (m.find()) {
                 if (commentText.contains("#spoiler") || commentText.contains("/spoiler")) {
                     commentText = commentText.replace(m.group(0), "Spoiler");
+
                 } else if (commentText.contains("/s") || commentText.contains("#s")) {
                     commentText = commentText.replace(m.group(0), m.group(1));
 

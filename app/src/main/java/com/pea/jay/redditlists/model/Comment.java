@@ -1,6 +1,7 @@
 package com.pea.jay.redditlists.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Comment implements Serializable {
@@ -22,9 +23,18 @@ public class Comment implements Serializable {
     private Link link;
     private ArrayList<Link> links;
     private ArrayList<Link> repliedLinks;
+    private ArrayList<String> spoilers = new ArrayList<>();
     private boolean hasLink;
     private static final long serialVersionUID = 1;
     private String colorString = "white";
+
+    public ArrayList<String> getSpoilers() {
+        return spoilers;
+    }
+
+    public void setSpoilers(ArrayList<String> spoilers) {
+        this.spoilers = spoilers;
+    }
 
     public String getColorString() {
         return colorString;
